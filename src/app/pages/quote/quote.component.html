@@ -1,1 +1,22 @@
-<p>quote works!</p>
+<app-header></app-header>
+<h2>Solicita tu cotización</h2>
+<form (ngSubmit)="onSubmit()" #cotizaForm="ngForm">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre" [(ngModel)]="formData.nombre" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
+
+  <label for="direccion">Dirección de origen:</label>
+  <input type="text" id="direccion" name="direccion" [(ngModel)]="formData.direccion" required>
+
+  <label for="destino">Dirección de destino:</label>
+  <input type="text" id="destino" name="destino" [(ngModel)]="formData.destino" required>
+
+  <button type="submit" [disabled]="cotizaForm.invalid">Cotizar</button>
+</form>
+
+<p *ngIf="submitted">¡Formulario enviado! {{ formData | json }}</p>
+
+<app-footer></app-footer>
+

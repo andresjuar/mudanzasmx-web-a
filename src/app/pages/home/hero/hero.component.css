@@ -23,3 +23,8 @@
     font-weight: bold;
     border-radius: 5px;
 }
+
+.cta:hover{
+    transform: translateY(-1px);
+    background-color: #f0d123;
+}
