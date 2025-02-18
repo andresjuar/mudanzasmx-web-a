@@ -4,7 +4,7 @@ import { HeroComponent } from "./hero/hero.component";
 import { FuncComponent } from "./func/func.component";
 import { Heroe2Component } from "./heroe-2/heroe-2.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
-import { PlanesComponent } from "./planes/planes.component";
+import { PlanesComponent } from "../../shared/planes/planes.component";
 import { RouterOutlet } from '@angular/router';
 
 @Component({

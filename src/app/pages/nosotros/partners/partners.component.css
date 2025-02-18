@@ -1,0 +1,61 @@
+.card-step {
+    background: rgba(255, 255, 255, 0.608);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de hover */
+    min-height: 300px;
+}
+
+.card-step:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta al hacer hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al hacer hover */
+}
+
+.card-step h3 {
+    color: #ffcc00; /* Color amarrillo para los números */
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h1 {
+    /* Color amarrillo para los números */
+    font-size: 3.5rem;
+    font-weight: bolder;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card-step h3 {
+    color: #000; /* Color oscuro para los títulos */
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card-step p {
+    color: #666; /* Color gris para el texto */
+}
+
+.logo {
+    width: 140px; /* Ajusta el tamaño del logo */
+    height: 140px; /* Mantiene el mismo alto y ancho para formar un círculo */
+    border-radius: 50%; /* Convierte el contenedor en un círculo */
+    overflow: hidden; /* Evita que la imagen sobresalga */
+    display: flex; /* Centra la imagen */
+    align-items: center; /* Alineación vertical */
+    justify-content: center; /* Alineación horizontal */
+    background-color: #f0f0f0; /* Color de fondo por si la imagen no carga */
+}
+
+.logo img {
+    width: 100%; /* Ajusta la imagen al contenedor */
+    height: 100%; /* Asegura que cubra todo el espacio */
+    object-fit: cover; /* Recorta la imagen para llenar el círculo sin deformarse */
+}
+.contenedor-logo{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}

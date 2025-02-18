@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 60px;
+    padding: 1rem 60px;
     background-color: black;
     /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
 }
@@ -52,3 +52,16 @@ body {
 .MudanzasMx:hover{
     transform: translateY(-1px);
 }
+
+/* Estado inicial: transparente */
+#navbar {
+    background-color: transparent;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  }
+  
+  /* Cuando el usuario hace scroll */
+  #navbar.scrolled {
+    background-color: rgba(255, 255, 255,0.9); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  }
+  
