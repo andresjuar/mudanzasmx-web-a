@@ -70,5 +70,15 @@ export class QuoteComponent {
         return false;
     }
   }
-  
+  submitQuote() {
+    console.log(this.quoteData)
+    this.http.post('/quote', this.quoteData).subscribe(
+      (response: any) => {
+        this.successMessage = 'Cotización enviada con éxito';
+      },
+      (error) => {
+        console.error('Error al enviar la cotización', error);
+      }
+    );
+  }
 }
