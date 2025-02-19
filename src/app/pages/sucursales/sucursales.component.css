@@ -1,0 +1,6 @@
+.sucursales-section{
+
+    min-height: calc(100vh - 1rem);
+    background: linear-gradient(to bottom, #ffffff, #ece0b2);
+    padding-top: 100px;
+}

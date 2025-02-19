@@ -20,6 +20,17 @@
     border-radius: 25px;
     width: 50%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 400px;
+  }
+
+  .succes-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+  }
+  .succes-card p{
+    text-align: center;
   }
   
   .contact-card h2 {

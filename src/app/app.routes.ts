@@ -7,6 +7,7 @@ import { QuoteComponent } from './pages/quote/quote.component';
 import { SucursalesComponent } from './pages/sucursales/sucursales.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 
+
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'Contacto', component: ContactoComponent},
