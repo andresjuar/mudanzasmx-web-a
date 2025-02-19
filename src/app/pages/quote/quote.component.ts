@@ -70,6 +70,7 @@ export class QuoteComponent {
         return false;
     }
   }
+  //prueba
   submitQuote() {
     console.log(this.quoteData)
     this.http.post('/quote', this.quoteData).subscribe(
