@@ -28,21 +28,42 @@ export class QuoteFormComponent {
     empaqueVip: null,
   };
 
-  habitaciones = [
+ habitaciones = [
     { 
       nombre: 'Sala', 
       muebles: [
-        { nombre: 'Sofá', volumen: 2 },
+        { nombre: 'Sofá grande', volumen: 3 },
+        { nombre: 'Sofá pequeño', volumen: 2 },
         { nombre: 'Mesa de centro', volumen: 1 },
-        { nombre: 'TV', volumen: 0.5 }
+        { nombre: 'TV', volumen: 0.5 },
+        { nombre: 'Librero', volumen: 1.8 }
       ]
     },
     { 
-      nombre: 'Recámara', 
+      nombre: 'Recámara principal', 
       muebles: [
-        { nombre: 'Cama', volumen: 3 },
-        { nombre: 'Closet', volumen: 2 },
-        { nombre: 'Buró', volumen: 0.7 }
+        { nombre: 'Cama King Size', volumen: 4 },
+        { nombre: 'Closet grande', volumen: 3 },
+        { nombre: 'Buró', volumen: 0.7 },
+        { nombre: 'Tocador', volumen: 2 },
+        { nombre: 'Espejo grande', volumen: 0.5 }
+      ]
+    },
+    { 
+      nombre: 'Recámara secundaria', 
+      muebles: [
+        { nombre: 'Cama individual', volumen: 2 },
+        { nombre: 'Closet pequeño', volumen: 2 },
+        { nombre: 'Escritorio', volumen: 1.5 },
+        { nombre: 'Silla de oficina', volumen: 0.8 }
+      ]
+    },
+    { 
+      nombre: 'Comedor', 
+      muebles: [
+        { nombre: 'Mesa de comedor', volumen: 2.5 },
+        { nombre: 'Sillas (6)', volumen: 2 },
+        { nombre: 'Vitrina', volumen: 2.2 }
       ]
     },
     { 
@@ -50,10 +71,60 @@ export class QuoteFormComponent {
       muebles: [
         { nombre: 'Refrigerador', volumen: 3 },
         { nombre: 'Estufa', volumen: 1.5 },
-        { nombre: 'Microondas', volumen: 0.4 }
+        { nombre: 'Microondas', volumen: 0.4 },
+        { nombre: 'Alacena', volumen: 2 },
+        { nombre: 'Mesa auxiliar', volumen: 1 }
+      ]
+    },
+    { 
+      nombre: 'Baño', 
+      muebles: [
+        { nombre: 'Lavadora', volumen: 1.5 },
+        { nombre: 'Secadora', volumen: 1.5 },
+        { nombre: 'Mueble de baño', volumen: 1 }
+      ]
+    },
+    { 
+      nombre: 'Cuarto de servicio', 
+      muebles: [
+        { nombre: 'Cama individual', volumen: 2 },
+        { nombre: 'Closet pequeño', volumen: 1.5 },
+        { nombre: 'Buró', volumen: 0.5 }
+      ]
+    },
+    { 
+      nombre: 'Oficina/Estudio', 
+      muebles: [
+        { nombre: 'Escritorio grande', volumen: 2 },
+        { nombre: 'Silla ergonómica', volumen: 0.8 },
+        { nombre: 'Librero', volumen: 2 },
+        { nombre: 'Computadora', volumen: 0.3 }
+      ]
+    },
+    { 
+      nombre: 'Objetos varios', 
+      muebles: [
+        { nombre: 'Bicicleta', volumen: 1.5 },
+        { nombre: 'Parrilla de asador', volumen: 1.2 },
+        { nombre: 'Caja de herramientas', volumen: 0.8 },
+        { nombre: 'Maletas (3)', volumen: 1.5 },
+        { nombre: 'Árbol de Navidad', volumen: 2 }
+      ]
+    },
+    { 
+      nombre: 'Cajas y bultos', 
+      muebles: [
+        { nombre: 'Caja pequeña', volumen: 0.5 },
+        { nombre: 'Caja mediana', volumen: 1 },
+        { nombre: 'Caja grande', volumen: 1.5 },
+        { nombre: 'Bulto de ropa pequeño', volumen: 0.7 },
+        { nombre: 'Bulto de ropa grande', volumen: 1.2 }
       ]
     }
   ];
+  
+
+  
 
   constructor(private http: HttpClient) {}
 

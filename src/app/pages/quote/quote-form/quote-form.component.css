@@ -1,5 +1,5 @@
 .quote-section {
-    min-height: calc(100vh - 1rem);
+    min-height: 100vh;
     background: linear-gradient(to bottom, #ffffff, #ece0b2);
     display: flex;
     justify-content: center;
