@@ -1,97 +1,30 @@
 <app-header></app-header>
-<div class="quote-section">
-  <h2>Calcula el costo de tu mudanza</h2>
-  <form (submit)="$event.preventDefault()">
-    <!-- Paso 1: Nombre -->
-    <div *ngIf="currentStep === 1">
-      <label>Nombre</label>
-      <input type="text" [(ngModel)]="quoteData.nombreCliente" name="nombreCliente" required />
+
+<div class="quote-container" *ngIf="!isQuoteStarted">
+  <!-- Sección izquierda: Tarjeta de inicio -->
+
+  <div class="quote-start">
+    <h2>Inicia tu cotización aquí</h2>
+    <p>Completa los siguientes pasos para recibir una cotización exacta.</p>
+    <button (click)="startQuote()">Comenzar</button>
+  </div>
+
+  <!-- Sección derecha: Explicación de pasos -->
+  <div class="quote-steps">
+    <h3>¿Cómo funciona?</h3>
+    <ul>
+      <li><strong>1. Identificación:</strong> Proporciona tu nombre y correo.</li>
+      <li><strong>2. Cálculo de volumen:</strong> Selecciona los muebles a trasladar.</li>
+      <li><strong>3. Distancia:</strong> Ingresa las direcciones de origen y destino.</li>
+      <li><strong>4. Extras:</strong> Elige servicios adicionales como empaque VIP.</li>
+      <li><strong>5. Cotización:</strong> Recibe el costo estimado de tu mudanza.</li>
+    </ul>
+  </div>
+</div>
 
 
-    </div>
-    <!-- Paso 2: Email -->
-    <div *ngIf="currentStep === 2">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="quoteData.emailCliente" name="emailCliente" required />
-    </div>
-
-    <!-- Paso 3: Volumen -->
-    <div *ngIf="currentStep === 3">
-      <label>Volumen (m³)</label>
-      <input type="number" [(ngModel)]="quoteData.volumen" name="volumen" required />
-    </div>
-
-    <!-- Paso 4: Origen -->
-    <div *ngIf="currentStep === 4">
-      <label>Dirección de origen</label>
-      <input type="text" [(ngModel)]="quoteData.origen" name="origen" required />
-    </div>
-
-    <!-- Paso 5: Destino -->
-    <div *ngIf="currentStep === 5">
-      <label>Dirección de destino</label>
-      <input type="text" [(ngModel)]="quoteData.destino" name="destino" required />
-    </div>
-
-    <!-- Paso 6: Tipo de origen -->
-    <div *ngIf="currentStep === 6">
-      <label>Tipo de vivienda de origen</label>
-      <input type="text" [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required />
-
-      <label>Pisos</label>
-      <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
-
-      <label>¿Tiene elevador?</label>
-      <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
-        <option [value]="true">Sí</option>
-        <option [value]="false">No</option>
-      </select>
-    </div>
-
-    <!-- Paso 7: Tipo de destino -->
-    <div *ngIf="currentStep === 7">
-      <label>Tipo de vivienda de destino</label>
-      <input type="text" [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required />
-
-      <label>Pisos</label>
-      <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
-
-      <label>¿Tiene elevador?</label>
-      <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
-        <option [value]="true">Sí</option>
-        <option [value]="false">No</option>
-      </select>
-    </div>
-
-    <!-- Paso 8: Metros de acarreo -->
-    <div *ngIf="currentStep === 8">
-      <label>Metros de acarreo en origen</label>
-      <input type="number" [(ngModel)]="quoteData.metrosAcarreo[0]" name="acarreoOrigen" required />
-
-      <label>Metros de acarreo en destino</label>
-      <input type="number" [(ngModel)]="quoteData.metrosAcarreo[1]" name="acarreoDestino" required />
-    </div>
-
-    <!-- Paso 9: Empaque VIP -->
-    <div *ngIf="currentStep === 9">
-      <label>¿Desea empaque VIP?</label>
-      <input type="checkbox" [(ngModel)]="quoteData.empaqueVip" name="empaqueVip" />
-    </div>
-
-    <!-- Botones de navegación -->
-    <div class="buttons">
-      <button type="button" (click)="prevStep()" *ngIf="currentStep > 1">Atrás</button>
-      <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 9">
-        Siguiente
-      </button>
-      <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 9">
-        Enviar cotización
-      </button>
-    </div>
-
-    <!-- Mensaje de éxito -->
-    <p *ngIf="successMessage">{{ successMessage }}</p>
-  </form>
-
+<!-- Formulario de cotización (se muestra solo cuando se inicia) -->
+<div *ngIf="isQuoteStarted">
+  <app-quote-form></app-quote-form>  
 </div>
 <app-footer></app-footer>

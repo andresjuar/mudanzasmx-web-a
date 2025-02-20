@@ -1,6 +1,5 @@
 .quote-section{
-        min-height: calc(100vh - 1rem);
-        background: linear-gradient(to bottom, #ffffff, #ece0b2);
+       
   
 
     display: flex;
@@ -9,62 +8,63 @@
     align-items: center;
    /* Centrar verticalmente en la pantalla */
   }
+
+  .quote-container {
+    min-height: calc(100vh - 1rem);
+    background: linear-gradient(to bottom, #ffffff, #ece0b2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+  }
   
-  .quote-section form {
-    background: white;
-    padding: 2rem;
+  .quote-start, .quote-steps {
+    width: 45%;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .quote-section h2 {
     text-align: center;
-    margin-bottom: 1rem;
+    background: white;
+    min-height: 400px;
   }
   
-  .quote-section label {
-    font-weight: bold;
+  .quote-start h2 {
+    margin-bottom: 10px;
   }
   
-  .quote-section input,
-  .quote-section select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .quote-section .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .quote-section button {
-    background: #FFD700;
-    color: black;
-    border: none;
+  .quote-start button {
+    margin-top: 15px;
     padding: 10px 15px;
-    border-radius: 25px;
+    border: none;
+    background-color: #ffd700;
+    color: black;
+    font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    border-radius: 25px;
   }
   
-  .quote-section button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
+  .quote-steps h3 {
+    margin-bottom: 10px;
   }
   
-  .quote-section button:hover:not(:disabled) {
-    background: #bea208;
+  .quote-steps ul {
+    list-style-type: none;
+    padding: 0;
   }
   
-  .quote-section p {
-    text-align: center;
-    font-weight: bold;
-    color: green;
+  .quote-steps li {
+    margin-bottom: 8px;
+    text-align: left;
   }
-  
+  @media (max-width: 768px) {
+    .quote-container {
+        flex-direction: column; /* Cambia de row a column */
+        align-items: center;
+    }
+
+    .quote-start, .quote-steps {
+        width: 90%; /* Ajusta el ancho para que ocupe más espacio */
+        min-height: auto;
+    }
+}
