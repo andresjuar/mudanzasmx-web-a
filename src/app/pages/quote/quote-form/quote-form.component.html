@@ -14,18 +14,26 @@
     </div>
 
     <!-- Paso 3: Volumen -->
+
     <div *ngIf="currentStep === 3">
       <h3>Selecciona los muebles de tu mudanza</h3>
     
-      <!-- Lista de habitaciones -->
-      <div *ngFor="let habitacion of habitaciones">
-        <!-- Botón para expandir/cerrar la lista de muebles -->
-        <h4 (click)="toggleHabitacion(habitacion.nombre)" class="habitacion-titulo">
-          {{ habitacion.nombre }} <span>{{ habitacionAbierta === habitacion.nombre ? '🔽' : '▶️' }}</span>
-        </h4>
+      <!-- Contenedor de habitaciones en grid -->
+      <div class="habitaciones-grid">
+        <button 
+          *ngFor="let habitacion of habitaciones" 
+          (click)="toggleHabitacion(habitacion.nombre)" 
+          [class.activa]="habitacionAbierta === habitacion.nombre"
+          class="habitacion-btn"
+        >
+          {{ habitacion.nombre }}
+        </button>
+      </div>
     
-        <!-- Tabla con los muebles (solo se muestra si la habitación está abierta) -->
-        <table *ngIf="habitacionAbierta === habitacion.nombre">
+      <!-- Lista de muebles en la habitación seleccionada -->
+      <div *ngIf="habitacionAbierta">
+        <h4>{{ habitacionAbierta }}</h4>
+        <table>
           <thead>
             <tr>
               <th>Mueble</th>
@@ -34,7 +42,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let mueble of habitacion.muebles">
+            <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
               <td>{{ mueble.nombre }}</td>
               <td>{{ mueble.volumen }}</td>
               <td>
@@ -51,6 +59,7 @@
         <thead>
           <tr>
             <th>Mueble</th>
+            <th>Cantidad</th>
             <th>Volumen (m³)</th>
             <th>Acción</th>
           </tr>
@@ -58,7 +67,12 @@
         <tbody>
           <tr *ngFor="let mueble of quoteData.volumen; let i = index">
             <td>{{ mueble.nombre }}</td>
-            <td>{{ mueble.volumen }}</td>
+            <td>
+              <button (click)="eliminarMueble(i)">➖</button>
+              {{ mueble.cantidad }}
+              <button (click)="agregarMueble(mueble)">➕</button>
+            </td>
+            <td>{{ mueble.volumen * mueble.cantidad }}</td>
             <td>
               <button (click)="eliminarMueble(i)">❌ Quitar</button>
             </td>
@@ -66,10 +80,9 @@
         </tbody>
       </table>
     
-      <h3>Volumen total: {{ volumenTotal }} m³</h3>
+      <h3>Volumen total: {{ quoteData.VolumenTotal }} m³</h3>
     </div>
     
-  
 
     <!-- Paso 4: Origen -->
     <div *ngIf="currentStep === 4">
