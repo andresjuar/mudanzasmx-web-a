@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class QuoteComponent {
   currentStep=1;
   totalSteps=10;
-
+  private apiUrl = 'http://localhost:3000/quote'
   quoteData={
     nombreCliente: null,
     emailCliente:null,
@@ -73,9 +73,10 @@ export class QuoteComponent {
   //prueba
   submitQuote() {
     console.log(this.quoteData)
-    this.http.post('/quote', this.quoteData).subscribe(
+    this.http.post(this.apiUrl, this.quoteData).subscribe(
       (response: any) => {
-        this.successMessage = 'Cotización enviada con éxito';
+        this.successMessage = response.estimatedPrice;
+        console.log(response);
       },
       (error) => {
         console.error('Error al enviar la cotización', error);
