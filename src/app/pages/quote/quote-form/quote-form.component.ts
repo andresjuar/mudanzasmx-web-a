@@ -17,12 +17,12 @@ export class QuoteFormComponent {
   volumenTotal: number = 0;
 
   quoteData = {
-    nombreCliente: null,
-    emailCliente: null,
+    nombreCliente: [null,null], //nombre apellido
+    contactoCliente: [null,null], //email numero
     volumen: [] as { nombre: string; volumen: number; cantidad: number }[],
     VolumenTotal: 0,
-    origen: null,
-    destino: null,
+    origen: [null,null,null,null,null], //calle y numero, ciudad, estado, pais, código postal
+    destino: [null,null,null,null,null], //calle y numero, ciudad, estado, pais, código postal
     tipoOrigen: [null, null, null], // [tipo, pisos, elevador]
     tipoDestino: [null, null, null], // [tipo, pisos, elevador]
     metrosAcarreo: [null, null], // [Origen, Destino]
@@ -187,22 +187,21 @@ calcularVolumenTotal() {
   isValidStep(): boolean {
     switch (this.currentStep) {
       case 1:
-        return !!this.quoteData.nombreCliente;
+        return !!this.quoteData.nombreCliente.every(value=>value !==null);
       case 2:
-        return !!this.quoteData.emailCliente;
+        return !!this.quoteData.contactoCliente.every(value=>value !==null);
       case 3:
         return this.quoteData.VolumenTotal > 0; // Debe haber al menos un objeto seleccionado
       case 4:
-        return !!this.quoteData.origen;
+        return !!this.quoteData.origen.every(value=>value !==null) && !!this.quoteData.destino.every(value=>value !==null);;
+
       case 5:
-        return !!this.quoteData.destino;
-      case 6:
         return this.quoteData.tipoOrigen.every(value => value !== null);
-      case 7:
+      case 6:
         return this.quoteData.tipoDestino.every(value => value !== null);
-      case 8:
+      case 7:
         return this.quoteData.metrosAcarreo.every(value => value !== null);
-      case 9:
+      case 8:
         return this.quoteData.empaqueVip !== null;
       default:
         return false;
