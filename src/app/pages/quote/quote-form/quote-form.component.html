@@ -15,28 +15,60 @@
 
     <!-- Paso 3: Volumen -->
     <div *ngIf="currentStep === 3">
-        <h3>Selecciona los muebles de tu mudanza</h3>
-      
-        <!-- Lista de habitaciones -->
-        <div *ngFor="let habitacion of habitaciones">
-          <h4>{{ habitacion.nombre }}</h4>
-          <div *ngFor="let mueble of habitacion.muebles">
-            <button (click)="agregarMueble(mueble)">
-              {{ mueble.nombre }} (+{{ mueble.volumen }} m³)
-            </button>
-          </div>
-        </div>
-      
-        <h3>Objetos seleccionados:</h3>
-        <ul>
-          <li *ngFor="let mueble of quoteData.volumen; let i = index">
-            {{ mueble.nombre }} ({{ mueble.volumen }} m³)
-            <button (click)="eliminarMueble(i)">❌</button>
-          </li>
-        </ul>
-      
-        <h3>Volumen total: {{ volumenTotal }} m³</h3>
+      <h3>Selecciona los muebles de tu mudanza</h3>
+    
+      <!-- Lista de habitaciones -->
+      <div *ngFor="let habitacion of habitaciones">
+        <!-- Botón para expandir/cerrar la lista de muebles -->
+        <h4 (click)="toggleHabitacion(habitacion.nombre)" class="habitacion-titulo">
+          {{ habitacion.nombre }} <span>{{ habitacionAbierta === habitacion.nombre ? '🔽' : '▶️' }}</span>
+        </h4>
+    
+        <!-- Tabla con los muebles (solo se muestra si la habitación está abierta) -->
+        <table *ngIf="habitacionAbierta === habitacion.nombre">
+          <thead>
+            <tr>
+              <th>Mueble</th>
+              <th>Volumen (m³)</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mueble of habitacion.muebles">
+              <td>{{ mueble.nombre }}</td>
+              <td>{{ mueble.volumen }}</td>
+              <td>
+                <button (click)="agregarMueble(mueble)">➕ Agregar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    
+      <!-- Lista de objetos seleccionados -->
+      <h3>Objetos seleccionados:</h3>
+      <table *ngIf="quoteData.volumen.length > 0">
+        <thead>
+          <tr>
+            <th>Mueble</th>
+            <th>Volumen (m³)</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mueble of quoteData.volumen; let i = index">
+            <td>{{ mueble.nombre }}</td>
+            <td>{{ mueble.volumen }}</td>
+            <td>
+              <button (click)="eliminarMueble(i)">❌ Quitar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <h3>Volumen total: {{ volumenTotal }} m³</h3>
+    </div>
+    
   
 
     <!-- Paso 4: Origen -->

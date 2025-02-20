@@ -128,6 +128,13 @@ export class QuoteFormComponent {
 
   constructor(private http: HttpClient) {}
 
+habitacionAbierta: string | null = null;
+
+toggleHabitacion(nombre: string) {
+  this.habitacionAbierta = this.habitacionAbierta === nombre ? null : nombre;
+}
+
+
   agregarMueble(mueble: { nombre: string; volumen: number }) {
     this.quoteData.volumen.push(mueble);
     this.calcularVolumenTotal();
