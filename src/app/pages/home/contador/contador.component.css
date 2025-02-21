@@ -1,0 +1,24 @@
+
+
+.recuadro {
+    flex: 1; /* Cada recuadro ocupa el 25% del ancho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+p{
+    max-width: 50%;
+}
+.row{
+    height: 50vh;
+}
+
+/* Colores */
+.izquierda { background-color: #b39847; } /* Azul */
+.derecha { background-color: #FFC107; } /* Verde */
+.extra1 { background-color: #FFC107; } /* Amarillo */
+.extra2 { background-color: #b39847; } /* Rojo */

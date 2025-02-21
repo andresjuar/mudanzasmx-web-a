@@ -1,16 +1,20 @@
-<app-header></app-header>
+
 
 <div class="quote-container" *ngIf="!isQuoteStarted">
   <!-- Sección izquierda: Tarjeta de inicio -->
 
-  <div class="quote-start">
+  <div class="quote-izquierda">
+    <div *ngIf="!isQuoteStarted" class="Tarjeta">
     <h2>Inicia tu cotización aquí</h2>
     <p>Completa los siguientes pasos para recibir una cotización exacta.</p>
     <button (click)="startQuote()">Comenzar</button>
+    </div>
+
   </div>
 
   <!-- Sección derecha: Explicación de pasos -->
-  <div class="quote-steps">
+  <div class="quote-derecha">
+    <div *ngIf="!isQuoteStarted" class="Tarjeta">
     <h3>¿Cómo funciona?</h3>
     <ul>
       <li><strong>1. Identificación:</strong> Proporciona tu nombre y correo.</li>
@@ -21,7 +25,7 @@
     </ul>
   </div>
 </div>
-
+</div>
 
 <!-- Formulario de cotización (se muestra solo cuando se inicia) -->
 <div *ngIf="isQuoteStarted">

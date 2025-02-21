@@ -1,123 +1,176 @@
-.quote-section {
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #ffffff, #ece0b2);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 20px;
-}
-.quote-section form {
-background: white;
-padding: 2rem;
-border-radius: 10px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-width: auto;
-display: flex;
-flex-direction: column;
-gap: 1rem;
+/* 📌 Estilos generales del contenedor principal */
+.quote-container {
+  min-height: 100vh;
+  background: #ece0b2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.quote-section h2 {
-text-align: center;
-margin-bottom: 1rem;
+/* 📌 Secciones izquierda y derecha */
+.quote-izquierda, .quote-derecha {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.quote-section label {
-font-weight: bold;
+/* 📌 Ajustes específicos para la izquierda */
+.quote-izquierda {
+  background: #ece0b2;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.quote-section input,
-.quote-section select {
-width: 100%;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 5px;
+/* 📌 Ajustes específicos para la derecha */
+.quote-derecha {
+  background: white;
+  padding: 20px;
 }
 
-.quote-section .buttons {
-display: flex;
-justify-content: space-between;
+/* 📌 Tarjeta centrada */
+.Tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%; /* Asegura que la tarjeta ocupe todo el ancho disponible */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
 }
 
-.quote-section button {
-background: #FFD700;
-color: black;
-border: none;
-padding: 10px 15px;
-border-radius: 25px;
-cursor: pointer;
-transition: background 0.3s;
+/* 📌 Ajustes para los formularios */
+.Tarjeta label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 100%; /* Asegura que el label ocupe todo el ancho */
 }
 
-.quote-section button:disabled {
-background: #ccc;
-cursor: not-allowed;
+/* 📌 Inputs estilizados y centrados */
+.Tarjeta input,
+.Tarjeta select {
+  width: 100%; /* Asegura que los inputs ocupen todo el ancho */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
 }
 
-.quote-section button:hover:not(:disabled) {
-background: #bea208;
+/* 📌 Contenedor de los botones */
+.Tarjeta .buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
 }
 
-.quote-section p {
-text-align: center;
-font-weight: bold;
-color: green;
+/* 📌 Estilos de los botones */
+.Tarjeta button {
+  background: #FFD700;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 16px;
+  text-align: center;
+  width: 100%; /* Asegura que los botones ocupen todo el ancho */
 }
 
-.habitacion-titulo {
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
+/* 📌 Efecto hover en botones */
+.Tarjeta button:hover {
+  background: #bea208;
+}
+
+/* 📌 Deshabilitar botón */
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* 📌 Mensaje de éxito */
+p {
+  text-align: center;
+  font-weight: bold;
+  color: green;
+}
+
+/* 📌 Ajustes de tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* 📌 Estilos de botones dentro de la tabla */
+table button {
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* 📌 Grid para habitaciones */
+.habitaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* 📌 Estilo para botones de habitaciones */
+.habitacion-btn {
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  padding: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  transition: 0.3s ease-in-out;
+}
+
+.habitacion-btn:hover {
+  background-color: #ddd;
+}
+
+/* 📌 Ajuste responsivo */
+@media (max-width: 768px) {
+  .quote-container {
+      flex-direction: column;
+      align-items: center;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+
+  .quote-izquierda, .quote-derecha {
+      width: 100%;
   }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+
+  .Tarjeta {
+      width: 90%;
   }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  button {
-    cursor: pointer;
-    padding: 5px;
-  }
-  
+
   .habitaciones-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
-    margin: 20px 0;
-  }
-  
-  .habitacion-btn {
-    background-color: #f4f4f4;
-    border: 2px solid #ccc;
-    padding: 15px;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 8px;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .habitacion-btn:hover {
-    background-color: #ddd;
-  }
-  
-  @media (max-width: 600px) {
-    .habitaciones-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
   }
-  
+}

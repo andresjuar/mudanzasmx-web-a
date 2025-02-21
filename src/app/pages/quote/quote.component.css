@@ -1,70 +1,88 @@
-.quote-section{
-       
-  
+.quote-container {
+  min-height: 100vh;
+  background:  #ece0b2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ /* Espacio entre las dos secciones */
+}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   /* Centrar verticalmente en la pantalla */
-  }
+.quote-izquierda, .quote-derecha {
+  width: 50%; /* Cada sección ocupa la mitad del ancho */
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  text-align: center;
+}
 
+.quote-izquierda {
+  background: #ece0b2;
+  padding: 20px;
+}
+
+.quote-derecha {
+  background: white;
+  padding: 20px;
+}
+
+/* Tarjetas */
+.Tarjeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  text-align: center;
+  max-width: 80%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+}
+
+.quote-derecha .Tarjeta{
+  background-color: #ffd700;
+}
+
+/* Botón */
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #ffd700;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+/* Lista */
+.quote-derecha ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.quote-derecha li {
+  margin-bottom: 8px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
   .quote-container {
-    min-height: calc(100vh - 1rem);
-    background: linear-gradient(to bottom, #ffffff, #ece0b2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 20px;
+      flex-direction: column; /* Cambia de fila a columna */
+      align-items: center;
   }
-  
-  .quote-start, .quote-steps {
-    width: 45%;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
-    background: white;
-    min-height: 400px;
-  }
-  
-  .quote-start h2 {
-    margin-bottom: 10px;
-  }
-  
-  .quote-start button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    border: none;
-    background-color: #ffd700;
-    color: black;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 25px;
-  }
-  
-  .quote-steps h3 {
-    margin-bottom: 10px;
-  }
-  
-  .quote-steps ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .quote-steps li {
-    margin-bottom: 8px;
-    text-align: left;
-  }
-  @media (max-width: 768px) {
-    .quote-container {
-        flex-direction: column; /* Cambia de row a column */
-        align-items: center;
-    }
 
-    .quote-start, .quote-steps {
-        width: 90%; /* Ajusta el ancho para que ocupe más espacio */
-        min-height: auto;
-    }
+  .quote-izquierda, .quote-derecha {
+      width: 100%;
+      height: auto;
+      padding: 40px 20px;
+  }
+
+  .Tarjeta {
+      max-width: 100%;
+  }
 }

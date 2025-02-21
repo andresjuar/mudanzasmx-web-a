@@ -1,179 +1,191 @@
-<div class="quote-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <form (submit)="$event.preventDefault()">
-        <!-- Paso 1: Nombre -->
-        <div *ngIf="currentStep === 1" class="col-8">
-          <label>Nombre</label>
-          <input type="text" [(ngModel)]="quoteData.nombreCliente[0]" name="nombreCliente" required />
+<div class="quote-container">
+  <div class="quote-izquierda">
+    <div class="Tarjeta">
 
-          <label>Apellido</label>
-          <input type="text" [(ngModel)]="quoteData.nombreCliente[1]" name="apellidoCliente" required />
-
-        </div>
-        <!-- Paso 2: Email -->
-        <div *ngIf="currentStep === 2" class="col-8">
-          <label>Email</label>
-          <input type="email" [(ngModel)]="quoteData.contactoCliente[0]" name="emailCliente" required />
-
-          <label>Número</label>
-          <input type="email" [(ngModel)]="quoteData.contactoCliente[1]" name="numeroCliente" required />
-        </div>
-
-        <!-- Paso 3: Volumen -->
-
-        <div *ngIf="currentStep === 3" class="col-8">
-          <h3>Selecciona los muebles de tu mudanza</h3>
-
-          <!-- Contenedor de habitaciones en grid -->
-          <div class="habitaciones-grid">
-            <button *ngFor="let habitacion of habitaciones" (click)="toggleHabitacion(habitacion.nombre)"
-              [class.activa]="habitacionAbierta === habitacion.nombre" class="habitacion-btn">
-              {{ habitacion.nombre }}
-            </button>
-          </div>
-
-          <!-- Lista de muebles en la habitación seleccionada -->
-          <div *ngIf="habitacionAbierta">
-            <h4>{{ habitacionAbierta }}</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>Mueble</th>
-                  <th>Volumen (m³)</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
-                  <td>{{ mueble.nombre }}</td>
-                  <td>{{ mueble.volumen }}</td>
-                  <td>
-                    <button (click)="agregarMueble(mueble)">➕ Agregar</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Lista de objetos seleccionados -->
-          <h3>Objetos seleccionados:</h3>
-          <table *ngIf="quoteData.volumen.length > 0">
-            <thead>
-              <tr>
-                <th>Mueble</th>
-                <th>Cantidad</th>
-                <th>Volumen (m³)</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let mueble of quoteData.volumen; let i = index">
-                <td>{{ mueble.nombre }}</td>
-                <td>
-                  <button (click)="eliminarMueble(i)">➖</button>
-                  {{ mueble.cantidad }}
-                  <button (click)="agregarMueble(mueble)">➕</button>
-                </td>
-                <td>{{ mueble.volumen * mueble.cantidad }}</td>
-                <td>
-                  <button (click)="eliminarMueble(i)">❌ Quitar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h3>Volumen total: {{ quoteData.VolumenTotal }} m³</h3>
-        </div>
-
-
-        <!-- Paso 4: Origen y Destino-->
-        <div *ngIf="currentStep === 4">
-          <div class="col-8">
-            <label>Calle y número de Origen</label>
-            <input type="text" [(ngModel)]="quoteData.origen[0]" name="origen" required />
-            <label>Ciudad</label>
-            <input type="text" [(ngModel)]="quoteData.origen[1]" name="origen" required />
-            <label>Estado</label>
-            <input type="text" [(ngModel)]="quoteData.origen[2]" name="origen" required />
-            <label>Pais</label>
-            <input type="text" [(ngModel)]="quoteData.origen[3]" name="origen" required />
-            <label>Código Postal</label>
-            <input type="text" [(ngModel)]="quoteData.origen[4]" name="origen" required />
-          </div>
-          <div class="col-8">
-            <label>Calle y número de Destino</label>
-            <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
-            <label>Ciudad</label>
-            <input type="text" [(ngModel)]="quoteData.destino[1]" name="origen" required />
-            <label>Estado</label>
-            <input type="text" [(ngModel)]="quoteData.destino[2]" name="origen" required />
-            <label>Pais</label>
-            <input type="text" [(ngModel)]="quoteData.destino[3]" name="origen" required />
-            <label>Código Postal</label>
-            <input type="text" [(ngModel)]="quoteData.destino[4]" name="origen" required />
-          </div>
-        </div>
-
-        <!-- Paso 6: Tipo de origen -->
-        <div *ngIf="currentStep === 5" class="card">
-          <label>Tipo de vivienda de origen</label>
-          <input type="text" [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required />
-
-          <label>Pisos</label>
-          <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
-
-          <label>¿Tiene elevador?</label>
-          <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
-            <option [value]="true">Sí</option>
-            <option [value]="false">No</option>
-          </select>
-        </div>
-
-        <!-- Paso 7: Tipo de destino -->
-        <div *ngIf="currentStep === 6" class="card">
-          <label>Tipo de vivienda de destino</label>
-          <input type="text" [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required />
-
-          <label>Pisos</label>
-          <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
-
-          <label>¿Tiene elevador?</label>
-          <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
-            <option [value]="true">Sí</option>
-            <option [value]="false">No</option>
-          </select>
-        </div>
-
-        <!-- Paso 8: Metros de acarreo -->
-        <div *ngIf="currentStep === 7" class="card">
-          <label>Metros de acarreo en origen</label>
-          <input type="number" [(ngModel)]="quoteData.metrosAcarreo[0]" name="acarreoOrigen" required />
-
-          <label>Metros de acarreo en destino</label>
-          <input type="number" [(ngModel)]="quoteData.metrosAcarreo[1]" name="acarreoDestino" required />
-        </div>
-
-        <!-- Paso 9: Empaque VIP -->
-        <div *ngIf="currentStep === 8" class="card">
-          <label>¿Desea empaque VIP?</label>
-          <input type="checkbox" [(ngModel)]="quoteData.empaqueVip" name="empaqueVip" />
-        </div>
-
-        <!-- Botones de navegación -->
-        <div class="buttons">
-          <button type="button" (click)="prevStep()" *ngIf="currentStep > 1">Atrás</button>
-          <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 8">
-            Siguiente
-          </button>
-          <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 8">
-            Enviar cotización
-          </button>
-        </div>
-
-        <!-- Mensaje de éxito -->
-        <p *ngIf="successMessage">{{ successMessage }}</p>
-      </form>
+          <form (submit)="$event.preventDefault()">
+            <!-- Paso 1: Nombre -->
+            <div *ngIf="currentStep === 1" class="col-8">
+              <label>Nombre</label>
+              <input type="text" [(ngModel)]="quoteData.nombreCliente[0]" name="nombreCliente" required />
+    
+              <label>Apellido</label>
+              <input type="text" [(ngModel)]="quoteData.nombreCliente[1]" name="apellidoCliente" required />
+    
+            </div>
+            <!-- Paso 2: Email -->
+            <div *ngIf="currentStep === 2" class="col-8">
+              <label>Email</label>
+              <input type="email" [(ngModel)]="quoteData.contactoCliente[0]" name="emailCliente" required />
+    
+              <label>Número</label>
+              <input type="email" [(ngModel)]="quoteData.contactoCliente[1]" name="numeroCliente" required />
+            </div>
+    
+            <!-- Paso 3: Volumen -->
+    
+            <div *ngIf="currentStep === 3" class="col-8">
+              <h3>Selecciona los muebles de tu mudanza</h3>
+    
+              <!-- Contenedor de habitaciones en grid -->
+              <div class="habitaciones-grid">
+                <button *ngFor="let habitacion of habitaciones" (click)="toggleHabitacion(habitacion.nombre)"
+                  [class.activa]="habitacionAbierta === habitacion.nombre" class="habitacion-btn">
+                  {{ habitacion.nombre }}
+                </button>
+              </div>
+    
+              <!-- Lista de muebles en la habitación seleccionada -->
+              <div *ngIf="habitacionAbierta">
+                <h4>{{ habitacionAbierta }}</h4>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Mueble</th>
+                      <th>Volumen (m³)</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
+                      <td>{{ mueble.nombre }}</td>
+                      <td>{{ mueble.volumen }}</td>
+                      <td>
+                        <button (click)="agregarMueble(mueble)">➕ Agregar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+              <!-- Lista de objetos seleccionados -->
+              <h3>Objetos seleccionados:</h3>
+              <table *ngIf="quoteData.volumen.length > 0">
+                <thead>
+                  <tr>
+                    <th>Mueble</th>
+                    <th>Cantidad</th>
+                    <th>Volumen (m³)</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let mueble of quoteData.volumen; let i = index">
+                    <td>{{ mueble.nombre }}</td>
+                    <td>
+                      <button (click)="eliminarMueble(i)">➖</button>
+                      {{ mueble.cantidad }}
+                      <button (click)="agregarMueble(mueble)">➕</button>
+                    </td>
+                    <td>{{ mueble.volumen * mueble.cantidad }}</td>
+                    <td>
+                      <button (click)="eliminarMueble(i)">❌ Quitar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+    
+              <h3>Volumen total: {{ quoteData.VolumenTotal }} m³</h3>
+            </div>
+    
+    
+            <!-- Paso 4: Origen y Destino-->
+            <div *ngIf="currentStep === 4">
+              <div class="col-8">
+                <label>Calle y número de Origen</label>
+                <input type="text" [(ngModel)]="quoteData.origen[0]" name="origen" required />
+                <label>Ciudad</label>
+                <input type="text" [(ngModel)]="quoteData.origen[1]" name="origen" required />
+                <label>Estado</label>
+                <input type="text" [(ngModel)]="quoteData.origen[2]" name="origen" required />
+                <label>Pais</label>
+                <input type="text" [(ngModel)]="quoteData.origen[3]" name="origen" required />
+                <label>Código Postal</label>
+                <input type="text" [(ngModel)]="quoteData.origen[4]" name="origen" required />
+              </div>
+              <div class="col-8">
+                <label>Calle y número de Destino</label>
+                <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
+                <label>Ciudad</label>
+                <input type="text" [(ngModel)]="quoteData.destino[1]" name="origen" required />
+                <label>Estado</label>
+                <input type="text" [(ngModel)]="quoteData.destino[2]" name="origen" required />
+                <label>Pais</label>
+                <input type="text" [(ngModel)]="quoteData.destino[3]" name="origen" required />
+                <label>Código Postal</label>
+                <input type="text" [(ngModel)]="quoteData.destino[4]" name="origen" required />
+              </div>
+            </div>
+    
+            <!-- Paso 6: Tipo de origen -->
+            <div *ngIf="currentStep === 5" class="card">
+              <label>Tipo de vivienda de origen</label>
+              <input type="text" [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required />
+    
+              <label>Pisos</label>
+              <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
+    
+              <label>¿Tiene elevador?</label>
+              <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
+                <option [value]="true">Sí</option>
+                <option [value]="false">No</option>
+              </select>
+            </div>
+    
+            <!-- Paso 7: Tipo de destino -->
+            <div *ngIf="currentStep === 6" class="card">
+              <label>Tipo de vivienda de destino</label>
+              <input type="text" [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required />
+    
+              <label>Pisos</label>
+              <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
+    
+              <label>¿Tiene elevador?</label>
+              <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
+                <option [value]="true">Sí</option>
+                <option [value]="false">No</option>
+              </select>
+            </div>
+    
+            <!-- Paso 8: Metros de acarreo -->
+            <div *ngIf="currentStep === 7" class="card">
+              <label>Metros de acarreo en origen</label>
+              <input type="number" [(ngModel)]="quoteData.metrosAcarreo[0]" name="acarreoOrigen" required />
+    
+              <label>Metros de acarreo en destino</label>
+              <input type="number" [(ngModel)]="quoteData.metrosAcarreo[1]" name="acarreoDestino" required />
+            </div>
+    
+            <!-- Paso 9: Empaque VIP -->
+            <div *ngIf="currentStep === 8" class="card">
+              <label>¿Desea empaque VIP?</label>
+              <input type="checkbox" [(ngModel)]="quoteData.empaqueVip" name="empaqueVip" />
+            </div>
+    
+            <!-- Botones de navegación -->
+            <div class="buttons">
+              <button type="button" (click)="prevStep()" *ngIf="currentStep > 1">Atrás</button>
+              <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 8">
+                Siguiente
+              </button>
+              <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 8">
+                Enviar cotización
+              </button>
+            </div>
+    
+            <!-- Mensaje de éxito -->
+            <p *ngIf="successMessage">{{ successMessage }}</p>
+          </form>
     </div>
   </div>
+
+  <!-- Sección derecha: Explicación de pasos -->
+  <div class="quote-derecha">
+    <div class="Tarjeta">
+    
+  </div>
 </div>
+</div>
+
+
+
+ 
