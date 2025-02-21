@@ -1,5 +1,5 @@
 .hero-section {
-    min-height: calc(100vh - 1rem);
+    min-height: 100vh;
     background: linear-gradient(to bottom, #ffffff, #ece0b2);
 }
 .hero-section h1 {
@@ -16,14 +16,13 @@
     font-size: 1.2rem;
 }
 .cta {
-    background-color: #FFD700;
+    background-color: #fbc210;
     color: black;
     padding: 15px 20px;
     text-decoration: none;
-    font-weight: bold;
     border-radius: 25px;
 }
 .cta:hover{
     transform: translateY(-1px);
-    background-color: #f0d123;
+    background-color: #ddac18;
 }

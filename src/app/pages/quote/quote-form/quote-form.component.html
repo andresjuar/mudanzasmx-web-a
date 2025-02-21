@@ -6,25 +6,25 @@
       <form (submit)="$event.preventDefault()">
             <!-- Paso 1: Nombre -->
             <div *ngIf="currentStep === 1">
-              <label>Nombre</label>
+              <label>Nombre(s)</label>
               <input type="text" [(ngModel)]="quoteData.nombreCliente[0]" name="nombreCliente" required />
     
-              <label>Apellido</label>
+              <label>Apellidos</label>
               <input type="text" [(ngModel)]="quoteData.nombreCliente[1]" name="apellidoCliente" required />
             </div>
             <!-- Paso 2: Email -->
             <div *ngIf="currentStep === 2">
-              <label>Email</label>
+              <label>Correo Electrónico</label>
               <input type="email" [(ngModel)]="quoteData.contactoCliente[0]" name="emailCliente" required />
     
-              <label>Número</label>
+              <label>Número de Teléfono</label>
               <input type="email" [(ngModel)]="quoteData.contactoCliente[1]" name="numeroCliente" required />
             </div>
     
             <!-- Paso 3: Volumen -->
     
             <div *ngIf="currentStep === 3">
-              <h3>Selecciona los muebles de tu mudanza</h3>
+              <h3>Ayúdanos a hacer una lista de lo que deseas mover en tu mudanza</h3>
     
               <!-- Contenedor de habitaciones en grid -->
               <div class="habitaciones-grid">
@@ -37,7 +37,7 @@
               
     
               <!-- Lista de objetos seleccionados -->
-              <h4>Objetos seleccionados:</h4>
+              <h4>Lista:</h4>
               <table *ngIf="quoteData.volumen.length > 0">
                 <thead>
                   <tr>
@@ -63,7 +63,7 @@
                 </tbody>
               </table>
     
-              <h5>Volumen total: {{ quoteData.VolumenTotal }} m³</h5>
+              <h5>Volumen estimado: {{ quoteData.VolumenTotal }} m³</h5>
             </div>
     
     
@@ -148,7 +148,7 @@
     
             <!-- Paso 9: Empaque VIP -->
             <div *ngIf="currentStep === 8" class="opciones-empaque">
-              <label>Selecciona el tipo de empaque</label>
+              <label>Selecciona el tipo de empaque para tu mudanza:</label>
               
               <div class="botones-empaque">
                 <button (click)="seleccionarEmpaque('sencillo')" class="btn-empaque">Empaque Sencillo</button>
@@ -193,6 +193,13 @@
   <!-- Sección derecha: Explicación de pasos -->
   <div class="quote-derecha">
     <div class="Tarjeta">
+      <div *ngIf="currentStep === 8" class="opciones-empaque">
+        <h5>Empaque Sencillo</h5>
+        
+        <h5>Empaque plus</h5>
+        <h5>Empaque Vip</h5>
+      </div>
+
       <div *ngIf="habitacionAbierta && currentStep===3" >
         <h4>{{ habitacionAbierta }}</h4>
         <table>

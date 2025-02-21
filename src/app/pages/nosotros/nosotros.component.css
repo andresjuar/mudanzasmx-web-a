@@ -6,9 +6,9 @@
     padding-bottom: 50px;
 }
 .partners{
-    padding-top: 2rem;
+    padding-top: .5rem;
     background:  #ece0b2; 
-    padding-bottom: 2rem;
+    padding-bottom: .5rem;
 }
 .nosotros-fotos {
     min-height: calc(100vh - 1rem); 

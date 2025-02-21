@@ -342,3 +342,111 @@ h2 {
 .whatsapp {
   background-color: #25d366;
 }
+
+.quote-container {
+  min-height: 100vh;
+  background:  #ece0b2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ /* Espacio entre las dos secciones */
+}
+
+.quote-izquierda, .quote-derecha {
+  width: 50%; /* Cada sección ocupa la mitad del ancho */
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  text-align: center;
+}
+
+.quote-izquierda {
+  background: #ece0b2;
+  padding: 20px;
+}
+
+.quote-derecha {
+  background: white;
+  padding: 20px;
+}
+
+/* Tarjetas */
+.Tarjeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  text-align: center;
+  width: 90%; /* Reduce el ancho para evitar que se desborde */
+  max-width: 800px; /* Limita el tamaño para que no crezca demasiado */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-height: 400px; /* Evita que sea muy pequeña */
+  height: auto; /* Que crezca según el contenido */
+  max-height: 80vh; /* Evita que se salga de la pantalla */
+  overflow-y: auto; /* Permite hacer scroll dentro de la tarjeta */
+
+  overflow: auto;
+}
+
+.quote-derecha .Tarjeta{
+  background-color: #fbc210;
+}
+
+/* Botón */
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #fbc210;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+@media (max-width: 768px) {
+  .quote-container {
+      flex-direction: column; /* Cambia de fila a columna */
+      align-items: center;
+  }
+
+  .quote-izquierda, .quote-derecha {
+      width: 100%;
+      height: auto;
+      padding: 40px 20px;
+  }
+
+  .Tarjeta {
+      max-width: 100%;
+  }
+}
+
+/* 📌 Estilos de los botones */
+.Tarjeta button {
+  background: #fbc210;
+}
+
+.Tarjeta button:hover {
+  background: #bea208;
+}
+
+.plan-card .price {
+  color: #fbc210;
+}
+
+.plan-card .btn {
+  background-color: #fbc210;
+}
+
+.plan-card.popular {
+  background: #fbc210;
+}
+
+.popular .btn {
+  color: #fbc210;
+}
