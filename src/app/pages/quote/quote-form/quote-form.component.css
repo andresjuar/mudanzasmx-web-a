@@ -1,52 +1,88 @@
-/* 📌 Estilos generales del contenedor principal */
 .quote-container {
   min-height: 100vh;
-  background: #ece0b2;
+  background:  #ece0b2;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+ /* Espacio entre las dos secciones */
 }
 
-/* 📌 Secciones izquierda y derecha */
 .quote-izquierda, .quote-derecha {
-  width: 50%;
+  width: 50%; /* Cada sección ocupa la mitad del ancho */
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
   text-align: center;
 }
 
-/* 📌 Ajustes específicos para la izquierda */
 .quote-izquierda {
   background: #ece0b2;
   padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* 📌 Ajustes específicos para la derecha */
 .quote-derecha {
   background: white;
   padding: 20px;
 }
 
-/* 📌 Tarjeta centrada */
+/* Tarjetas */
 .Tarjeta {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
   text-align: center;
-  width: 100%; /* Asegura que la tarjeta ocupe todo el ancho disponible */
+  width: 90%; /* Reduce el ancho para evitar que se desborde */
+  max-width: 800px; /* Limita el tamaño para que no crezca demasiado */
   padding: 20px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-height: 400px;
+  min-height: 400px; /* Evita que sea muy pequeña */
+  height: auto; /* Que crezca según el contenido */
+  max-height: 80vh; /* Evita que se salga de la pantalla */
+  overflow-y: auto; /* Permite hacer scroll dentro de la tarjeta */
+  
+  
 }
+
+
+.quote-derecha .Tarjeta{
+  background-color: #ffd700;
+}
+
+/* Botón */
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #ffd700;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+@media (max-width: 768px) {
+  .quote-container {
+      flex-direction: column; /* Cambia de fila a columna */
+      align-items: center;
+  }
+
+  .quote-izquierda, .quote-derecha {
+      width: 100%;
+      height: auto;
+      padding: 40px 20px;
+  }
+
+  .Tarjeta {
+      max-width: 100%;
+  }
+}
+
+
 
 /* 📌 Ajustes para los formularios */
 .Tarjeta label {
@@ -65,7 +101,7 @@
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
 }
 
 /* 📌 Contenedor de los botones */
@@ -96,10 +132,7 @@
 }
 
 /* 📌 Deshabilitar botón */
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
+
 
 /* 📌 Mensaje de éxito */
 p {
@@ -112,13 +145,14 @@ p {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 th, td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 0px;
   text-align: left;
+  background-color: #f4f4f4;
 }
 
 th {
@@ -126,10 +160,7 @@ th {
 }
 
 /* 📌 Estilos de botones dentro de la tabla */
-table button {
-  cursor: pointer;
-  padding: 5px;
-}
+
 
 /* 📌 Grid para habitaciones */
 .habitaciones-grid {
@@ -173,4 +204,14 @@ table button {
   .habitaciones-grid {
       grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.Tarjeta button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+table button {
+  cursor: pointer;
+  padding: 2px;
 }

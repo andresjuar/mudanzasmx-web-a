@@ -1,19 +1,19 @@
 <div class="quote-container">
+  <!-- Sección izquierda: Tarjeta de inicio -->
+
   <div class="quote-izquierda">
     <div class="Tarjeta">
-
-          <form (submit)="$event.preventDefault()">
+      <form (submit)="$event.preventDefault()">
             <!-- Paso 1: Nombre -->
-            <div *ngIf="currentStep === 1" class="col-8">
+            <div *ngIf="currentStep === 1">
               <label>Nombre</label>
               <input type="text" [(ngModel)]="quoteData.nombreCliente[0]" name="nombreCliente" required />
     
               <label>Apellido</label>
               <input type="text" [(ngModel)]="quoteData.nombreCliente[1]" name="apellidoCliente" required />
-    
             </div>
             <!-- Paso 2: Email -->
-            <div *ngIf="currentStep === 2" class="col-8">
+            <div *ngIf="currentStep === 2">
               <label>Email</label>
               <input type="email" [(ngModel)]="quoteData.contactoCliente[0]" name="emailCliente" required />
     
@@ -23,7 +23,7 @@
     
             <!-- Paso 3: Volumen -->
     
-            <div *ngIf="currentStep === 3" class="col-8">
+            <div *ngIf="currentStep === 3">
               <h3>Selecciona los muebles de tu mudanza</h3>
     
               <!-- Contenedor de habitaciones en grid -->
@@ -33,32 +33,11 @@
                   {{ habitacion.nombre }}
                 </button>
               </div>
-    
               <!-- Lista de muebles en la habitación seleccionada -->
-              <div *ngIf="habitacionAbierta">
-                <h4>{{ habitacionAbierta }}</h4>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Mueble</th>
-                      <th>Volumen (m³)</th>
-                      <th>Acción</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
-                      <td>{{ mueble.nombre }}</td>
-                      <td>{{ mueble.volumen }}</td>
-                      <td>
-                        <button (click)="agregarMueble(mueble)">➕ Agregar</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              
     
               <!-- Lista de objetos seleccionados -->
-              <h3>Objetos seleccionados:</h3>
+              <h4>Objetos seleccionados:</h4>
               <table *ngIf="quoteData.volumen.length > 0">
                 <thead>
                   <tr>
@@ -72,25 +51,25 @@
                   <tr *ngFor="let mueble of quoteData.volumen; let i = index">
                     <td>{{ mueble.nombre }}</td>
                     <td>
-                      <button (click)="eliminarMueble(i)">➖</button>
+                      <button (click)="eliminarMueble(i)" style="width: 50px;">➖</button>
                       {{ mueble.cantidad }}
-                      <button (click)="agregarMueble(mueble)">➕</button>
+                      <button (click)="agregarMueble(mueble)" style="width: 50px;">➕</button>
                     </td>
                     <td>{{ mueble.volumen * mueble.cantidad }}</td>
                     <td>
-                      <button (click)="eliminarMueble(i)">❌ Quitar</button>
+                      <button (click)="eliminarMueble(i)">❌</button>
                     </td>
                   </tr>
                 </tbody>
               </table>
     
-              <h3>Volumen total: {{ quoteData.VolumenTotal }} m³</h3>
+              <h5>Volumen total: {{ quoteData.VolumenTotal }} m³</h5>
             </div>
     
     
             <!-- Paso 4: Origen y Destino-->
             <div *ngIf="currentStep === 4">
-              <div class="col-8">
+              <div class="">
                 <label>Calle y número de Origen</label>
                 <input type="text" [(ngModel)]="quoteData.origen[0]" name="origen" required />
                 <label>Ciudad</label>
@@ -102,7 +81,7 @@
                 <label>Código Postal</label>
                 <input type="text" [(ngModel)]="quoteData.origen[4]" name="origen" required />
               </div>
-              <div class="col-8">
+              <div class="">
                 <label>Calle y número de Destino</label>
                 <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
                 <label>Ciudad</label>
@@ -117,7 +96,7 @@
             </div>
     
             <!-- Paso 6: Tipo de origen -->
-            <div *ngIf="currentStep === 5" class="card">
+            <div *ngIf="currentStep === 5" class="">
               <label>Tipo de vivienda de origen</label>
               <input type="text" [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required />
     
@@ -132,7 +111,7 @@
             </div>
     
             <!-- Paso 7: Tipo de destino -->
-            <div *ngIf="currentStep === 6" class="card">
+            <div *ngIf="currentStep === 6" class="">
               <label>Tipo de vivienda de destino</label>
               <input type="text" [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required />
     
@@ -147,7 +126,7 @@
             </div>
     
             <!-- Paso 8: Metros de acarreo -->
-            <div *ngIf="currentStep === 7" class="card">
+            <div *ngIf="currentStep === 7" class="">
               <label>Metros de acarreo en origen</label>
               <input type="number" [(ngModel)]="quoteData.metrosAcarreo[0]" name="acarreoOrigen" required />
     
@@ -156,7 +135,7 @@
             </div>
     
             <!-- Paso 9: Empaque VIP -->
-            <div *ngIf="currentStep === 8" class="card">
+            <div *ngIf="currentStep === 8" class="">
               <label>¿Desea empaque VIP?</label>
               <input type="checkbox" [(ngModel)]="quoteData.empaqueVip" name="empaqueVip" />
             </div>
@@ -175,16 +154,41 @@
             <!-- Mensaje de éxito -->
             <p *ngIf="successMessage">{{ successMessage }}</p>
           </form>
+    
+
     </div>
   </div>
 
   <!-- Sección derecha: Explicación de pasos -->
   <div class="quote-derecha">
     <div class="Tarjeta">
-    
+      <div *ngIf="habitacionAbierta">
+        <h4>{{ habitacionAbierta }}</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Mueble</th>
+              <th>Volumen (m³)</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
+              <td>{{ mueble.nombre }}</td>
+              <td>{{ mueble.volumen }}</td>
+              <td>
+                <button (click)="agregarMueble(mueble)">➕</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
 </div>
 </div>
+  
+  
+  
 
 
 
