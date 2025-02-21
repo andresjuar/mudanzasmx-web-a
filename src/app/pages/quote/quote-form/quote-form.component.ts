@@ -17,6 +17,7 @@ export class QuoteFormComponent {
   successMessage: string | null = null;
 
   folio: string | null = null;
+  folioC: string | null = null;
   folioLetra: string | null = null;
   directoPrecio: string | null = null;
   directoUSAPrecio: string | null = null;
@@ -25,6 +26,7 @@ export class QuoteFormComponent {
   directoUSATiempo: string | null = null;
   compartidoTiempo: string | null = null;
   distancia: string | null = null;
+  mensajeWhatsApp: string = '';
   
   volumenTotal: number = 0;
 
@@ -141,6 +143,10 @@ export class QuoteFormComponent {
 
 constructor(private http: HttpClient) {}
 
+
+
+
+
 habitacionAbierta: string | null = null;
 
 toggleHabitacion(nombre: string) {
@@ -245,6 +251,11 @@ calcularVolumenTotal() {
     
         this.folio = response.folio[1];
         this.folioLetra = response.folio[0];
+
+        this.folioC  = `${this.folioLetra}${this.folio}`
+
+        this.mensajeWhatsApp = `https://api.whatsapp.com/send?phone=5215618953849&text=Hola! Hice mi cotización en mudanzasmx.com, me interesa reservar mi mudanza con el folio: ${this.folioC} en el servicio: GOGOGO2 🚚`;
+
 
         this.directoPrecio=response.paquetes.directo.precio;
         this.compartidoPrecio=response.paquetes.compartido.precio;

@@ -253,7 +253,10 @@
                     <p>Disfruta de un servicio de mudanza personalizado que garantiza la entrega de tus pertenencias en tiempo y forma.</p>
                     <div class="price">Costo: {{directoPrecio}}</div>
                     <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
-                    <ul class="features list-unstyled">
+                    <a [attr.href]="mensajeWhatsApp" class="btn" target="_blank">
+                      DESCARGA ESTA COTIZACIÓN
+                    </a>            
+                          <ul class="features list-unstyled">
                         <li>✔ Recorrido de {{distancia}}</li>
                         <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
                         <li>✔ Entrega más rápida</li>
@@ -292,10 +295,10 @@
         </div>
     </div>
 </div>
-<button type="submit" (click)="submitQuote()" >
+<!-- <button type="submit" (click)="submitQuote()" >
   Enviar cotización
 </button>
-
+ -->
 </div>
   
 
