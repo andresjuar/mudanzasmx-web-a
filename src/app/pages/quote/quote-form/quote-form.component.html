@@ -195,9 +195,20 @@
     <div class="Tarjeta">
       <div *ngIf="currentStep === 8" class="opciones-empaque">
         <h5>Empaque Sencillo</h5>
-        
+        <p>Selecciona solo si NO requieres ningún tipo de empaque. 
+          ✔ NO recomendado 
+          ✔ Riesgo de daño en tus pertenencias</p>
         <h5>Empaque plus</h5>
+        <p>Este empaque es lo básico en la protección, ofreciendo así una ligera 
+          capa de protección para tus muebles 
+          ✔ Colchonetas, plástico protector y cinta. 
+          ✔ Protección simple pero eficiente para tus pertenencias. </p>
         <h5>Empaque Vip</h5>
+        <p>Este servicio es nuestra especialidad, protegiendo tus pertenencias 
+          para evitar cualquier tipo de daño durante el traslado 
+          ✔ Protecciones del empaque plus agregando esquineros de cartón, 
+          cajas ropero, polipack espuma, plástico burbuja, cuerdas y más. 
+          ✔ Ideal para evitar cualquier daño durante el largo trayecto. </p>
       </div>
 
       <div *ngIf="habitacionAbierta && currentStep===3" >
@@ -250,7 +261,7 @@
   <div class="plan-section">
     <div class="container text-center my-5" style="max-width: 1100px;">
         <h2>Elige el Plan Perfecto para tu Mudanza</h2>
-        <h3>Tu mudanza con folio: {{folioLetra}}{{folio}}</h3>
+        <h3>Tu cotización tiene asignada el folio:  : {{folioLetra}}{{folio}}</h3>
         <p class="lead mb-5 text-secondary">Estas son las propuestas que te tenemos</p>
 
         <div class="row">
