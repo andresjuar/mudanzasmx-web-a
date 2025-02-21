@@ -135,11 +135,6 @@ button {
 
 
 /* 📌 Mensaje de éxito */
-p {
-  text-align: center;
-  font-weight: bold;
-  color: green;
-}
 
 /* 📌 Ajustes de tabla */
 table {

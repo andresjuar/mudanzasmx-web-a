@@ -15,7 +15,15 @@ export class QuoteFormComponent {
   totalSteps = 11;
   private apiUrl = 'http://localhost:3000/quote';
   successMessage: string | null = null;
+
   folio: string | null = null;
+  directoPrecio: string | null = null;
+  directoUSAPrecio: string | null = null;
+  compartidoPrecio: string | null = null;
+  directoTiempo: string | null = null;
+  directoUSATiempo: string | null = null;
+  compartidoTiempo: string | null = null;
+  distancia: string | null = null;
   
   volumenTotal: number = 0;
 
@@ -233,8 +241,19 @@ calcularVolumenTotal() {
     console.log(this.quoteData);
     this.http.post(this.apiUrl, this.quoteData).subscribe(
       (response: any) => {
-        this.successMessage = response.estimatedPrice;
+    
         this.folio = response.folio;
+
+        this.directoPrecio=response.paquetes.directo.precio;
+        this.compartidoPrecio=response.paquetes.compartido.precio;
+        this.directoUSAPrecio=response.paquetes.DirectoUSA.precio;
+        
+        this.directoTiempo=response.paquetes.directo.tiempoEntrega;
+        this.compartidoTiempo=response.paquetes.compartido.tiempoEntrega;
+        this.directoUSATiempo=response.paquetes.DirectoUSA.tiempoEntrega;
+
+        this.distancia=response.distancia
+
         console.log(response);
       },
       (error) => {

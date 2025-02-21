@@ -239,6 +239,7 @@
   
 <div *ngIf="currentStep === 11">
   <app-header></app-header>
+
   <div class="plan-section">
     <div class="container text-center my-5" style="max-width: 1100px;">
         <h2>Elige el Plan Perfecto para tu Mudanza</h2>
@@ -250,12 +251,12 @@
                 <div class="plan-card">
                     <h3>Plan Directo</h3>
                     <p>Disfruta de un servicio de mudanza personalizado que garantiza la entrega de tus pertenencias en tiempo y forma.</p>
-                    <div class="price">Desde $500</div>
-                    <a href="Cotiza" class="btn">SELECCIONA ESTE PLAN</a>
+                    <div class="price">Costo: {{directoPrecio}}</div>
+                    <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
                     <ul class="features list-unstyled">
-                        <li>✔ Hasta 10,000 kg de carga</li>
-                        <li>✔ Transporte rápido y seguro</li>
-                        <li>✔ Cobertura en múltiples estados</li>
+                        <li>✔ Recorrido de {{distancia}}</li>
+                        <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
+                        <li>✔ Entrega más rápida</li>
                     </ul>
                 </div>
             </div>
@@ -265,12 +266,12 @@
                     <div class="highlight-label" style="color: white;">PLAN MÁS ELEGIDO</div>
                     <h3>Plan Directo USA</h3>
                     <p>Elige este plan si buscas un traslado directo de tus pertenencias desde EE.UU a México con los mejores estándares de seguridad y rapidez.</p>
-                    <div class="price" style="color: white;">$750</div>
-                    <a href="Cotiza" class="btn">SELECCIONA ESTE PLAN</a>
+                    <div class="price" style="color: white;">Costo: {{directoUSAPrecio}}</div>
+                    <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
                     <ul class="features list-unstyled">
-                        <li>✔ Hasta 15,000 kg de carga</li>
-                        <li>✔ Transporte ágil y seguro</li>
-                        <li>✔ Recogida flexible en EE.UU</li>
+                        <li>✔ Recorrido de {{distancia}}</li>
+                        <li>✔ Tiempo de entrega {{directoUSATiempo}} dias</li>
+                        <li>✔ 20% de descuento en envío</li>
                     </ul>
                 </div>
             </div>
@@ -279,18 +280,21 @@
                 <div class="plan-card">
                     <h3>Plan Compartido</h3>
                     <p>Ideal para quienes desean compartir costos. Tu carga se combinará con la de otros usuarios para un ahorro significativo.</p>
-                    <div class="price">Desde $300</div>
-                    <a href="Cotiza" class="btn">SELECCIONA ESTE PLAN</a>
+                    <div class="price">Costo: {{compartidoPrecio}}</div>
+                    <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
                     <ul class="features list-unstyled">
-                        <li>✔ Carga de hasta 5,000 kg</li>
-                        <li>✔ Planificación flexible</li>
-                        <li>✔ Transporte seguro y confiable</li>
+                        <li>✔ Recorrido de {{distancia}}</li>
+                        <li>✔ Tiempo de entrega {{compartidoTiempo}} dias</li>
+                        <li>✔ 40% de descuento en envío</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- <button type="submit" (click)="submitQuote()" >
+  Enviar cotización
+</button> -->
 
 </div>
   
