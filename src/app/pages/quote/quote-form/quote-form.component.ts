@@ -17,6 +17,7 @@ export class QuoteFormComponent {
   successMessage: string | null = null;
 
   folio: string | null = null;
+  folioLetra: string | null = null;
   directoPrecio: string | null = null;
   directoUSAPrecio: string | null = null;
   compartidoPrecio: string | null = null;
@@ -242,7 +243,8 @@ calcularVolumenTotal() {
     this.http.post(this.apiUrl, this.quoteData).subscribe(
       (response: any) => {
     
-        this.folio = response.folio;
+        this.folio = response.folio[1];
+        this.folioLetra = response.folio[0];
 
         this.directoPrecio=response.paquetes.directo.precio;
         this.compartidoPrecio=response.paquetes.compartido.precio;
