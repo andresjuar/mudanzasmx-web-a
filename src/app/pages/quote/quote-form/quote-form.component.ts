@@ -2,18 +2,21 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { HeaderComponent } from '../../../shared/header/header.component';
 
 @Component({
   selector: 'app-quote-form',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,HeaderComponent],
   templateUrl: './quote-form.component.html',
   styleUrl: './quote-form.component.css'
 })
 export class QuoteFormComponent {
   currentStep = 1;
-  totalSteps = 10;
+  totalSteps = 11;
   private apiUrl = 'http://localhost:3000/quote';
   successMessage: string | null = null;
+  folio: string | null = null;
+  
   volumenTotal: number = 0;
 
   quoteData = {
@@ -23,10 +26,11 @@ export class QuoteFormComponent {
     VolumenTotal: 0,
     origen: [null,null,null,null,null], //calle y numero, ciudad, estado, pais, código postal
     destino: [null,null,null,null,null], //calle y numero, ciudad, estado, pais, código postal
-    tipoOrigen: [null, null, null], // [tipo, pisos, elevador]
-    tipoDestino: [null, null, null], // [tipo, pisos, elevador]
+    tipoOrigen: ['', null, false], // [tipo, pisos, elevador]
+    tipoDestino: ['', 1, false], // [tipo, pisos, elevador]
     metrosAcarreo: [null, null], // [Origen, Destino]
-    empaqueVip: null,
+    empaque: '',
+    seguro:''
   };
   habitaciones = [
     { 
@@ -168,6 +172,8 @@ calcularVolumenTotal() {
 
 
 
+
+
   nextStep() {
     if (this.isValidStep()) {
       if (this.currentStep < this.totalSteps) {
@@ -196,23 +202,39 @@ calcularVolumenTotal() {
         return !!this.quoteData.origen.every(value=>value !==null) && !!this.quoteData.destino.every(value=>value !==null);;
 
       case 5:
-        return this.quoteData.tipoOrigen.every(value => value !== null);
+        return this.quoteData.tipoOrigen[1] !== null;
       case 6:
-        return this.quoteData.tipoDestino.every(value => value !== null);
+        return this.quoteData.tipoDestino[1] !== null;
       case 7:
         return this.quoteData.metrosAcarreo.every(value => value !== null);
       case 8:
-        return this.quoteData.empaqueVip !== null;
+        return this.quoteData.empaque !== null;
+      case 9:
+        return this.quoteData.seguro !== null;
       default:
         return false;
-    }
+    }}
+  
+
+  seleccionarEmpaque(tipo: string) {
+    this.quoteData.empaque = tipo; // Guarda la opción seleccionada
+    this.currentStep++; // Avanza al siguiente paso automáticamente
   }
 
+  seleccionarSeguro(tipo: string) {
+    this.quoteData.seguro = tipo; // Guarda la opción seleccionada
+    this.currentStep++; // Avanza al siguiente paso automáticamente
+  }
+
+
+
   submitQuote() {
+    this.currentStep++; 
     console.log(this.quoteData);
     this.http.post(this.apiUrl, this.quoteData).subscribe(
       (response: any) => {
         this.successMessage = response.estimatedPrice;
+        this.folio = response.folio;
         console.log(response);
       },
       (error) => {

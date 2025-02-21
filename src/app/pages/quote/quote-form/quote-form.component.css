@@ -44,8 +44,8 @@
   height: auto; /* Que crezca según el contenido */
   max-height: 80vh; /* Evita que se salga de la pantalla */
   overflow-y: auto; /* Permite hacer scroll dentro de la tarjeta */
-  
-  
+
+  overflow: auto;
 }
 
 
@@ -214,4 +214,132 @@ th {
 table button {
   cursor: pointer;
   padding: 2px;
+}
+
+.opciones-empaque {
+  text-align: center;
+}
+
+.botones-empaque {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-empaque {
+  background-color: #ffc107;
+  color: black;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.btn-empaque:hover {
+  background-color: #ff9800;
+}
+
+.opciones-seguro {
+  text-align: center;
+}
+
+.botones-seguro {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-seguro {
+  background-color: #ffc107;
+  color: black;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.btn-seguro:hover {
+  background-color: #ff9800;
+}
+
+.plan-section {
+  padding-top: 3rem;
+  min-height: calc(100vh - 1rem);
+  background: linear-gradient(to bottom, #ffffff, #ece0b2); 
+}
+.plan-card {
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 450px;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card h3 {
+  padding-top: 2rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.plan-card ul {
+  text-align: left;
+  padding-top: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.plan-card .price {
+  font-size: 2rem;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.plan-card .btn {
+  background-color: #FFD700;
+  color: black;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.plan-card.popular {
+  background: #FFD700;
+  color: white;
+  position: relative;
+}
+
+.popular .btn {
+  background-color: white;
+  color: #FFD700;
+}
+
+.highlight-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: #FFD700;
+  padding: 5px 15px;
+  font-weight: bold;
+  border-radius: 5px;
+
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 3rem;
 }

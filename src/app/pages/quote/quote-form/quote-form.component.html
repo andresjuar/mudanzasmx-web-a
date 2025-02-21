@@ -1,4 +1,4 @@
-<div class="quote-container">
+<div class="quote-container" *ngIf="currentStep !==11">
   <!-- Sección izquierda: Tarjeta de inicio -->
 
   <div class="quote-izquierda">
@@ -81,49 +81,61 @@
                 <label>Código Postal</label>
                 <input type="text" [(ngModel)]="quoteData.origen[4]" name="origen" required />
               </div>
-              <div class="">
-                <label>Calle y número de Destino</label>
-                <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
-                <label>Ciudad</label>
-                <input type="text" [(ngModel)]="quoteData.destino[1]" name="origen" required />
-                <label>Estado</label>
-                <input type="text" [(ngModel)]="quoteData.destino[2]" name="origen" required />
-                <label>Pais</label>
-                <input type="text" [(ngModel)]="quoteData.destino[3]" name="origen" required />
-                <label>Código Postal</label>
-                <input type="text" [(ngModel)]="quoteData.destino[4]" name="origen" required />
-              </div>
+        
             </div>
     
             <!-- Paso 6: Tipo de origen -->
             <div *ngIf="currentStep === 5" class="">
               <label>Tipo de vivienda de origen</label>
-              <input type="text" [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required />
-    
-              <label>Pisos</label>
-              <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
-    
-              <label>¿Tiene elevador?</label>
-              <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
-                <option [value]="true">Sí</option>
-                <option [value]="false">No</option>
+              <select [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required>
+                <option value="casa">Casa</option>
+                <option value="dpto">Departamento</option>
+                <option value="oficina">Oficina</option>
+                <option value="bodega">Bodega</option>
               </select>
+            
+              <!-- Mostrar "Pisos" solo si se selecciona casa, dpto u oficina -->
+              <div *ngIf="quoteData.tipoOrigen[0] === 'casa' || quoteData.tipoOrigen[0] === 'dpto' || quoteData.tipoOrigen[0] === 'oficina'">
+                <label>Pisos</label>
+                <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
+              </div>
+            
+              <!-- Mostrar "¿Tiene elevador?" solo si es dpto u oficina -->
+              <div *ngIf="quoteData.tipoOrigen[0] === 'dpto' || quoteData.tipoOrigen[0] === 'oficina'">
+                <label>¿Tiene elevador?</label>
+                <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
+                  <option [value]="true">Sí</option>
+                  <option [value]="false">No</option>
+                </select>
+              </div>
             </div>
-    
+            
             <!-- Paso 7: Tipo de destino -->
             <div *ngIf="currentStep === 6" class="">
               <label>Tipo de vivienda de destino</label>
-              <input type="text" [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required />
-    
-              <label>Pisos</label>
-              <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
-    
-              <label>¿Tiene elevador?</label>
-              <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
-                <option [value]="true">Sí</option>
-                <option [value]="false">No</option>
+              <select [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required>
+                <option value="casa">Casa</option>
+                <option value="dpto">Departamento</option>
+                <option value="oficina">Oficina</option>
+                <option value="bodega">Bodega</option>
               </select>
+            
+              <!-- Mostrar "Pisos" solo si se selecciona casa, dpto u oficina -->
+              <div *ngIf="quoteData.tipoDestino[0] === 'casa' || quoteData.tipoDestino[0] === 'dpto' || quoteData.tipoDestino[0] === 'oficina'">
+                <label>Pisos</label>
+                <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
+              </div>
+            
+              <!-- Mostrar "¿Tiene elevador?" solo si es dpto u oficina -->
+              <div *ngIf="quoteData.tipoDestino[0] === 'dpto' || quoteData.tipoDestino[0] === 'oficina'">
+                <label>¿Tiene elevador?</label>
+                <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
+                  <option [value]="true">Sí</option>
+                  <option [value]="false">No</option>
+                </select>
+              </div>
             </div>
+            
     
             <!-- Paso 8: Metros de acarreo -->
             <div *ngIf="currentStep === 7" class="">
@@ -135,22 +147,41 @@
             </div>
     
             <!-- Paso 9: Empaque VIP -->
-            <div *ngIf="currentStep === 8" class="">
-              <label>¿Desea empaque VIP?</label>
-              <input type="checkbox" [(ngModel)]="quoteData.empaqueVip" name="empaqueVip" />
+            <div *ngIf="currentStep === 8" class="opciones-empaque">
+              <label>Selecciona el tipo de empaque</label>
+              
+              <div class="botones-empaque">
+                <button (click)="seleccionarEmpaque('sencillo')" class="btn-empaque">Empaque Sencillo</button>
+                <button (click)="seleccionarEmpaque('plus')" class="btn-empaque">Empaque Plus</button>
+                <button (click)="seleccionarEmpaque('vip')" class="btn-empaque">Empaque VIP</button>
+              </div>
             </div>
-    
+
+            <div *ngIf="currentStep === 9" class="opciones-seguro">
+              <label>Selecciona el tipo de seguro</label>
+              
+              <div class="botones-seguro">
+                <button (click)="seleccionarSeguro('basico')" class="btn-seguro">Seguro Básico</button>
+                <button (click)="seleccionarSeguro('amplia')" class="btn-seguro">Cobertura Amplia</button>
+              </div>
+            </div>
+                   
+            <div *ngIf="currentStep === 10">
+              <h3>Todo listo para tu cotización</h3>
+            </div>
+            
             <!-- Botones de navegación -->
             <div class="buttons">
               <button type="button" (click)="prevStep()" *ngIf="currentStep > 1">Atrás</button>
               <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 8">
                 Siguiente
               </button>
-              <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 8">
+              <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 10">
                 Enviar cotización
               </button>
             </div>
-    
+            
+            
             <!-- Mensaje de éxito -->
             <p *ngIf="successMessage">{{ successMessage }}</p>
           </form>
@@ -162,7 +193,7 @@
   <!-- Sección derecha: Explicación de pasos -->
   <div class="quote-derecha">
     <div class="Tarjeta">
-      <div *ngIf="habitacionAbierta">
+      <div *ngIf="habitacionAbierta && currentStep===3" >
         <h4>{{ habitacionAbierta }}</h4>
         <table>
           <thead>
@@ -183,11 +214,85 @@
           </tbody>
         </table>
       </div>
+      <div *ngIf="currentStep === 4">
+
+        <div class="">
+          <label>Calle y número de Destino</label>
+          <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
+          <label>Ciudad</label>
+          <input type="text" [(ngModel)]="quoteData.destino[1]" name="origen" required />
+          <label>Estado</label>
+          <input type="text" [(ngModel)]="quoteData.destino[2]" name="origen" required />
+          <label>Pais</label>
+          <input type="text" [(ngModel)]="quoteData.destino[3]" name="origen" required />
+          <label>Código Postal</label>
+          <input type="text" [(ngModel)]="quoteData.destino[4]" name="origen" required />
+        </div>
+        <button type="button" (click)="prevStep()" *ngIf="currentStep > 1" style="color: #ffd700;">.</button>
+      </div>
+
+
+
   </div>
 </div>
 </div>
   
-  
+<div *ngIf="currentStep === 11">
+  <app-header></app-header>
+  <div class="plan-section">
+    <div class="container text-center my-5" style="max-width: 1100px;">
+        <h2>Elige el Plan Perfecto para tu Mudanza</h2>
+        <h3>Tu mudanza con folio: {{folio}}</h3>
+        <p class="lead mb-5 text-secondary">Estas son las propuestas que te tenemos</p>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="plan-card">
+                    <h3>Plan Directo</h3>
+                    <p>Disfruta de un servicio de mudanza personalizado que garantiza la entrega de tus pertenencias en tiempo y forma.</p>
+                    <div class="price">Desde $500</div>
+                    <a href="Cotiza" class="btn">SELECCIONA ESTE PLAN</a>
+                    <ul class="features list-unstyled">
+                        <li>✔ Hasta 10,000 kg de carga</li>
+                        <li>✔ Transporte rápido y seguro</li>
+                        <li>✔ Cobertura en múltiples estados</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 position-relative">
+                <div class="plan-card popular">
+                    <div class="highlight-label" style="color: white;">PLAN MÁS ELEGIDO</div>
+                    <h3>Plan Directo USA</h3>
+                    <p>Elige este plan si buscas un traslado directo de tus pertenencias desde EE.UU a México con los mejores estándares de seguridad y rapidez.</p>
+                    <div class="price" style="color: white;">$750</div>
+                    <a href="Cotiza" class="btn">SELECCIONA ESTE PLAN</a>
+                    <ul class="features list-unstyled">
+                        <li>✔ Hasta 15,000 kg de carga</li>
+                        <li>✔ Transporte ágil y seguro</li>
+                        <li>✔ Recogida flexible en EE.UU</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="plan-card">
+                    <h3>Plan Compartido</h3>
+                    <p>Ideal para quienes desean compartir costos. Tu carga se combinará con la de otros usuarios para un ahorro significativo.</p>
+                    <div class="price">Desde $300</div>
+                    <a href="Cotiza" class="btn">SELECCIONA ESTE PLAN</a>
+                    <ul class="features list-unstyled">
+                        <li>✔ Carga de hasta 5,000 kg</li>
+                        <li>✔ Planificación flexible</li>
+                        <li>✔ Transporte seguro y confiable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
   
 
 
