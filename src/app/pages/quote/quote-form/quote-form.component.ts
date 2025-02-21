@@ -26,7 +26,9 @@ export class QuoteFormComponent {
   directoUSATiempo: string | null = null;
   compartidoTiempo: string | null = null;
   distancia: string | null = null;
-  mensajeWhatsApp: string = '';
+  mensajeWhatsAppDirecto: string = '';
+  mensajeWhatsAppCompartido: string = '';
+  mensajeWhatsAppUSA: string = '';
   
   volumenTotal: number = 0;
 
@@ -254,7 +256,9 @@ calcularVolumenTotal() {
 
         this.folioC  = `${this.folioLetra}${this.folio}`
 
-        this.mensajeWhatsApp = `https://api.whatsapp.com/send?phone=5215618953849&text=Hola! Hice mi cotización en mudanzasmx.com, me interesa reservar mi mudanza con el folio: ${this.folioC} en el servicio: GOGOGO2 🚚`;
+        this.mensajeWhatsAppDirecto = `https://api.whatsapp.com/send?phone=5215618953849&text=Hola! Hice mi cotización en mudanzasmx.com, me interesa reservar mi mudanza con el folio: ${this.folioC} en el servicio: Plan Exlusivo 🚚`;
+        this.mensajeWhatsAppCompartido = `https://api.whatsapp.com/send?phone=5215618953849&text=Hola! Hice mi cotización en mudanzasmx.com, me interesa reservar mi mudanza con el folio: ${this.folioC} en el servicio: Plan Flex Compartido 🚚`;
+        this.mensajeWhatsAppUSA = `https://api.whatsapp.com/send?phone=5215618953849&text=Hola! Hice mi cotización en mudanzasmx.com, me interesa reservar mi mudanza con el folio: ${this.folioC} en el servicio: Plan Directo USA 🚚`;
 
 
         this.directoPrecio=response.paquetes.directo.precio;

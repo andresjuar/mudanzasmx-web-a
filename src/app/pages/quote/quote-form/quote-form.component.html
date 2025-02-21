@@ -244,7 +244,7 @@
 </div>
 </div>
   
-<div *ngIf="currentStep === 11">
+<div *ngIf="currentStep === 1">
   <app-header></app-header>
 
   <div class="plan-section">
@@ -256,16 +256,20 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="plan-card">
-                    <h3>Plan Directo</h3>
-                    <p>Disfruta de un servicio de mudanza personalizado que garantiza la entrega de tus pertenencias en tiempo y forma.</p>
+                    <h3>Plan Flex Compartido</h3>
+                    <p>Ideal para quienes buscan la opción más económica. Tu carga se combinará con la de otros usuarios para reducir costos, con entrega flexible.</p>
                     <div class="price">Costo: {{directoPrecio}}</div>
                     <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
                  
-                   
-
-                    <a [attr.href]="mensajeWhatsApp" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
-                      Reserva este Plan
+          
+                  <div class="btn whatsapp">
+                    <a [attr.href]="mensajeWhatsAppCompartido" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
+                      Reserva este Plan 
                      </a>
+                     <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+
+                    </div>
+
                           <ul class="features list-unstyled">
                         <li>✔ Recorrido de {{distancia}}</li>
                         <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
@@ -284,7 +288,7 @@
                     
                     
 
-                    <a [attr.href]="mensajeWhatsApp" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
+                    <a [attr.href]="mensajeWhatsAppUSA" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
                       Reserva este Plan
                      </a>
                     <ul class="features list-unstyled">
@@ -304,7 +308,7 @@
 
                    
 
-                    <a [attr.href]="mensajeWhatsApp" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
+                    <a [attr.href]="mensajeWhatsAppDirecto" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
                       Reserva este Plan
                      </a>
 

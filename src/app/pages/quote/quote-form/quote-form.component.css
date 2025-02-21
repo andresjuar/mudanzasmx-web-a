@@ -450,3 +450,7 @@ button {
 .popular .btn {
   color: #fbc210;
 }
+
+btn .whatsapp {
+  color: black;
+}
