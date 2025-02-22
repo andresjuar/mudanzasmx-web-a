@@ -195,9 +195,20 @@
     <div class="Tarjeta">
       <div *ngIf="currentStep === 8" class="opciones-empaque">
         <h5>Empaque Sencillo</h5>
-        
+        <p>Selecciona solo si NO requieres ningún tipo de empaque. 
+          ✔ NO recomendado 
+          ✔ Riesgo de daño en tus pertenencias</p>
         <h5>Empaque plus</h5>
+        <p>Este empaque es lo básico en la protección, ofreciendo así una ligera 
+          capa de protección para tus muebles 
+          ✔ Colchonetas, plástico protector y cinta. 
+          ✔ Protección simple pero eficiente para tus pertenencias. </p>
         <h5>Empaque Vip</h5>
+        <p>Este servicio es nuestra especialidad, protegiendo tus pertenencias 
+          para evitar cualquier tipo de daño durante el traslado 
+          ✔ Protecciones del empaque plus agregando esquineros de cartón, 
+          cajas ropero, polipack espuma, plástico burbuja, cuerdas y más. 
+          ✔ Ideal para evitar cualquier daño durante el largo trayecto. </p>
       </div>
 
       <div *ngIf="habitacionAbierta && currentStep===3" >
@@ -244,13 +255,13 @@
 </div>
 </div>
   
-<div *ngIf="currentStep === 1">
+<div *ngIf="currentStep === 11">
   <app-header></app-header>
 
   <div class="plan-section">
     <div class="container text-center my-5" style="max-width: 1100px;">
         <h2>Elige el Plan Perfecto para tu Mudanza</h2>
-        <h3>Tu mudanza con folio: {{folioLetra}}{{folio}}</h3>
+        <h3>Tu cotización tiene asignada el folio:  : {{folioLetra}}{{folio}}</h3>
         <p class="lead mb-5 text-secondary">Estas son las propuestas que te tenemos</p>
 
         <div class="row">
@@ -259,22 +270,21 @@
                     <h3>Plan Flex Compartido</h3>
                     <p>Ideal para quienes buscan la opción más económica. Tu carga se combinará con la de otros usuarios para reducir costos, con entrega flexible.</p>
                     <div class="price">Costo: {{directoPrecio}}</div>
-                    <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
+                    <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download" class="btn">DESCARGA ESTA COTIZACIÓN</a>
                  
           
-                  <div class="btn whatsapp">
                     <a [attr.href]="mensajeWhatsAppCompartido" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
-                      Reserva este Plan 
+                      Reserva este Plan   
+                    <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
                      </a>
-                     <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          
 
-                    </div>
-
-                          <ul class="features list-unstyled">
-                        <li>✔ Recorrido de {{distancia}}</li>
-                        <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
-                        <li>✔ Entrega más rápida</li>
-                    </ul>
+                     <ul class="features list-unstyled">
+                      <li>✔ Recorrido de {{distancia}}</li>
+                      <li>✔ Tiempo de entrega {{compartidoTiempo}} dias</li>
+                      <li>✔ Ideal si no tienes prisa en recibir tus pertenencias.</li>
+                  </ul>
+                   
                 </div>
             </div>
 
@@ -284,17 +294,20 @@
                     <h3>Plan Directo USA</h3>
                     <p>Elige este plan si buscas un traslado directo de tus pertenencias desde EE.UU a México con los mejores estándares de seguridad y rapidez.</p>
                     <div class="price" style="color: white;">Costo: {{directoUSAPrecio}}</div>
-                    <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
+
+                    <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download" class="btn" style="background-color: white;">DESCARGA ESTA COTIZACIÓN</a>
                     
                     
 
                     <a [attr.href]="mensajeWhatsAppUSA" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
-                      Reserva este Plan
+                      <span style="color: black;">Reserva este Plan</span>
+                      <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+ 
                      </a>
                     <ul class="features list-unstyled">
                         <li>✔ Recorrido de {{distancia}}</li>
                         <li>✔ Tiempo de entrega {{directoUSATiempo}} dias</li>
-                        <li>✔ 20% de descuento en envío</li>
+                        <li>✔ Equilibrio entre precio y rapidez.</li>
                     </ul>
                 </div>
             </div>
@@ -304,19 +317,22 @@
                     <h3>Plan Compartido</h3>
                     <p>Ideal para quienes desean compartir costos. Tu carga se combinará con la de otros usuarios para un ahorro significativo.</p>
                     <div class="price">Costo: {{compartidoPrecio}}</div>
-                    <a href="Cotiza" class="btn">DESCARGA ESTA COTIZACIÓN</a>
+                    <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download" class="btn">DESCARGA ESTA COTIZACIÓN</a>
 
                    
 
-                    <a [attr.href]="mensajeWhatsAppDirecto" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
-                      Reserva este Plan
+                    <a [attr.href]="mensajeWhatsAppDirecto" class="btn whatsapp" target="_blank" style="background-color: #25d366; color: black">
+                     <span style="color: black;">Reserva este Plan</span> 
+                      <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+
                      </a>
 
                     <ul class="features list-unstyled">
-                        <li>✔ Recorrido de {{distancia}}</li>
-                        <li>✔ Tiempo de entrega {{compartidoTiempo}} dias</li>
-                        <li>✔ 40% de descuento en envío</li>
-                    </ul>
+                      <li>✔ Recorrido de {{distancia}}</li>
+                      <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
+                      <li>✔ Transporte inmediato a tu destino sin escalas.</li>
+                  </ul>
+
                 </div>
             </div>
         </div>
