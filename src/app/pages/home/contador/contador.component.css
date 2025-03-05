@@ -9,16 +9,39 @@
     font-weight: bold;
     text-align: center;
     color: white;
+    min-width: 25%;
 }
-p{
+
+p {
     max-width: 50%;
 }
-.row{
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     height: 50vh;
 }
 
 /* Colores */
-.izquierda { background-color: #967409; } /* Azul */
-.derecha { background-color: #fbc210; } /* Verde */
-.extra1 { background-color: #fbc210; } /* Amarillo */
-.extra2 { background-color: #967409; } /* Rojo */
+.izquierda { background-color: #967409; }
+.derecha { background-color: #fbc210; }
+.extra1 { background-color: #fbc210; }
+.extra2 { background-color: #967409; }
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .recuadro {
+        flex: 1 1 calc(50%); /* Cada recuadro ocupa el 50% del ancho con espacio entre ellos */
+    }
+    p{
+        font-size: smaller;
+    }
+    .extra1{
+        order: 2;
+    }
+}
