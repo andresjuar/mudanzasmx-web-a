@@ -1,13 +1,13 @@
 .hero-section {
     min-height: 100vh;
-    background-color: #ece0b2;
+    background-color:   #fde69f;
 }
 .hero-section h1 {
-    font-size: 4rem;
+    font-size: clamp(3rem, 2.5vw, 4rem);
     font-weight: bolder;
 }
 .hero-section p {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin-top: 20px;
 }
 .hero-section .btn {
@@ -20,8 +20,7 @@
     color: black;
     padding: 15px 20px;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
+    border-radius: 40px;
 }
 .hero-section {
     overflow: hidden;

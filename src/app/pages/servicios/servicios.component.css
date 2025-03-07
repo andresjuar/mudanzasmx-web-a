@@ -1,5 +1,7 @@
 .plan-section {
-    padding-top: 3rem;
     min-height: calc(100vh);
-    background: linear-gradient(to bottom, #ffffff, #ece0b2); 
+    background: linear-gradient(to bottom, #ffffff,  #fde69f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

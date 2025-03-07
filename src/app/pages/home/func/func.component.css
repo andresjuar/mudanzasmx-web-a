@@ -1,17 +1,6 @@
 
 
-.card-step {
-    background: rgba(255, 255, 255, 0.608);
-    border-radius: 40px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de hover */
-    min-height: 500px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 
 .display-4{
     height: 60px;
@@ -53,12 +42,15 @@
 }
 
 .func{
-    margin-top: 40px;
+    margin-top: 60px;
     margin-bottom: 40px;
+    min-height: 50vh;
 }
 
 .cards{
     margin:40px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 
@@ -68,11 +60,40 @@
     .hero-section {
         margin-top: 50px;
     }
-    .card-step{
-        
+    .card-step{  
         min-height: 350px;
         margin-bottom: 20px;   
      }
-
+     .cards{
+        margin:40px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    
+}
+.col-md-3{
+    margin-bottom: 20px;
 }
 
+.cards .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; 
+}
+
+.card-step {
+    background: rgba(255, 255, 255, 0.608);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Hace que todas las tarjetas tengan la misma altura */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.col-md-3 {
+    display: flex; /* Asegura que cada columna tenga la misma altura */
+}

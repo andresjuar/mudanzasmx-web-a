@@ -2,7 +2,7 @@
 
 .hero-section {
     min-height: 100vh;
-    background: linear-gradient(to bottom, #ffffff, #ece0b2);
+    background: linear-gradient(to bottom, #ffffff,  #fde69f);
 }
 
 h1 {
@@ -46,4 +46,12 @@ h1 {
 
 .planes{
     min-height: 80vh;
+}
+
+.contador{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }

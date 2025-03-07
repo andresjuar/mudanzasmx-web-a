@@ -1,21 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 
 
 @Component({
   selector: 'app-contador',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './contador.component.html',
   styleUrl: './contador.component.css'
 })
 export class ContadorComponent implements OnInit, AfterViewInit {
-  contador: number = 0;
-  clientes: number = 0;
+  contador: number = 5674;
+  clientes: number = 9000;
   contadorFormatted: string = '0';
   clientesFormatted: string = '0';
   objetivoContador: number = 8674;
   objetivoClientes: number = 12000;
   velocidad: number = 20; 
-  observado: boolean = false; // Para asegurarnos de que solo se active una vez
+  observado: boolean = false; 
+  visible: boolean = false; // Nueva propiedad para controlar la visibilidad
 
   constructor(private elementRef: ElementRef) {}
 
@@ -25,13 +27,14 @@ export class ContadorComponent implements OnInit, AfterViewInit {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !this.observado) {
+          this.visible = true; // Hace que la clase 'visible' se aplique en el HTML
           this.iniciarContador();
           this.iniciarClientes();
-          this.observado = true; // Evita que la animación se repita
-          observer.disconnect(); // Deja de observar una vez activado
+          this.observado = true;
+          observer.disconnect(); 
         }
       });
-    }, { threshold: 0.5 }); // Se activa cuando el 50% del componente es visible
+    }, { threshold: 0.5 });
 
     observer.observe(this.elementRef.nativeElement);
   }
