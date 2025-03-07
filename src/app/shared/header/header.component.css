@@ -5,6 +5,7 @@
     align-items: center;
     padding-top: .2rem 60px;
     background-color: black;
+    max-width: 100%;
     
     /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
 }
@@ -67,14 +68,35 @@ h1 {
 }
 
 /* Estado inicial: transparente */
-#navbar {
-    background-color: transparent;
-    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-  }
+
   
-  /* Cuando el usuario hace scroll */
-  #navbar.scrolled {
-    background-color: rgba(255, 255, 255,0.9); 
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+
+  @media (min-width: 991px) {
+    /* Estilos específicos para pantallas menores a 991px */
+    #navbar {
+        background-color: transparent;
+        transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      }
+      
+      /* Cuando el usuario hace scroll */
+      #navbar.scrolled {
+        background-color: rgba(255, 255, 255,0.9); 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+      }
   }
-  
+
+  @media (max-width: 991px) {
+
+      
+      #navbar {
+        background-color: rgba(255, 255, 255,0.9); 
+        transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      }
+      
+      /* Cuando el usuario hace scroll */
+      #navbar.scrolled {
+        background-color: rgba(255, 255, 255,0.9); 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+      }
+    
+  }

@@ -7,10 +7,11 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 import { PlanesComponent } from "../../shared/planes/planes.component";
 import { RouterOutlet } from '@angular/router';
 import { ContadorComponent } from './contador/contador.component';
+import { WhButtonComponent } from "../../shared/wh-button/wh-button.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent, HeroComponent, FuncComponent, Heroe2Component, PlanesComponent, FooterComponent, ContadorComponent],
+  imports: [HeaderComponent, HeroComponent, FuncComponent, Heroe2Component, PlanesComponent, FooterComponent, ContadorComponent, WhButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -1,10 +1,26 @@
+
+
 .card-step {
     background: rgba(255, 255, 255, 0.608);
     border-radius: 40px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de hover */
-    min-height: 370px;
+    min-height: 500px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display-4{
+    height: 60px;
+    width: 60px;
+    background-color: rgba(251, 194, 16, 0.6); /* Amarillo con 70% de opacidad */
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card-step:hover {
@@ -13,16 +29,8 @@
 }
 
 .card-step h2 {
-    color: #ffcc00; /* Color amarrillo para los números */
+    color: #967409;
     font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-h1 {
-    /* Color amarrillo para los números */
-    font-size: 3.5rem;
-    font-weight: bolder;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -36,5 +44,35 @@ h1 {
 
 .card-step p {
     color: #666; /* Color gris para el texto */
+}
+
+.func h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: bolder;
+   
+}
+
+.func{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.cards{
+    margin:40px;
+}
+
+
+@media (max-width: 991px) {
+    /* Estilos específicos para pantallas menores a 991px */
+    
+    .hero-section {
+        margin-top: 50px;
+    }
+    .card-step{
+        
+        min-height: 350px;
+        margin-bottom: 20px;   
+     }
+
 }
 

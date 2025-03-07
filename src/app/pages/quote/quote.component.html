@@ -136,7 +136,6 @@
     <p>Obtén una cotización precisa en pocos pasos y sin complicaciones.</p>
     <button (click)="startQuote()">Comenzar</button>
     </div>
-
   </div>
 
   <!-- Sección derecha: Explicación de pasos -->
@@ -155,53 +154,8 @@
 </div>
 </div>
 
-<!-- Formulario de cotización (se muestra solo cuando se inicia) -->
 <div *ngIf="isQuoteStarted">
   <app-quote-form></app-quote-form>  
 </div>
 
-<footer class="bg-light text-dark pt-4 pb-2 w-100 fo">
-  <div class="container-fluid"> <!-- Usamos container-fluid para que ocupe todo el ancho -->
-      <!-- Título MudanzasMx -->
-      <div class="row mb-3">
-          <div class="col-12 text-center">
-              <a href="/" style="text-decoration: none;">
-              <h2 class="footer-title">
-                  <span class="black">MUDANZASMX</span>
-              </h2>
-          </a>
-          </div>
-      </div>
-
-      <!-- Primera fila: Enlaces -->
-      <div class="row mb-3">
-          <div class="col-12 text-center">
-              <ul class="list-inline mb-0">
-                  <li class="list-inline-item"><a href="#" class="text-dark text-decoration-none">Inicio</a></li>
-                  <li class="list-inline-item"><a href="Servicios" class="text-dark text-decoration-none">Servicios</a></li>
-                  <li class="list-inline-item"><a href="Nosotros" class="text-dark text-decoration-none">Nosotros</a></li>
-                  <li class="list-inline-item"><a href="Cotiza" class="text-dark text-decoration-none">Cotiza</a></li>
-                  <li class="list-inline-item"><a href="Sucursales" class="text-dark text-decoration-none">Sucursales</a></li>
-                  <li class="list-inline-item"><a href="#" class="text-dark text-decoration-none">Preguntas Frecuentes</a></li>
-              </ul>
-          </div>
-      </div>
-
-      <!-- Segunda fila: Iconos de redes sociales -->
-      <div class="row mb-3">
-          <div class="col-12 text-center">
-              <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="text-dark me-3"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
-          </div>
-      </div>
-
-      <!-- Tercera fila: Derechos reservados -->
-      <div class="row">
-          <div class="col-12 text-center">
-              <p class="mb-0">© 2025 MudanzasMx. Todos los Derechos Reservados.</p>
-          </div>
-      </div>
-  </div>
-</footer>
+<app-footer></app-footer>
