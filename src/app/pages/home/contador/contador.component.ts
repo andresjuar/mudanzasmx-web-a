@@ -14,7 +14,7 @@ export class ContadorComponent implements OnInit, AfterViewInit {
   contadorFormatted: string = '0';
   clientesFormatted: string = '0';
   objetivoContador: number = 8674;
-  objetivoClientes: number = 12000;
+  objetivoClientes: number = 12323;
   velocidad: number = 20; 
   observado: boolean = false; 
   visible: boolean = false; // Nueva propiedad para controlar la visibilidad

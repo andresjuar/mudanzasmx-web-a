@@ -1,13 +1,11 @@
 
 
 <div class="quote-container" *ngIf="!isQuoteStarted">
-  <!-- Sección izquierda: Tarjeta de inicio -->
 
-  <div class="quote-izquierda">
-    
-    <div *ngIf="!isQuoteStarted" class="Tarjeta">
+  <div class="quote">
+    <div *ngIf="!isQuoteStarted" class="Tarjeta center">
       <div class="">
-        <svg height="150px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" data-name="Capa 1" viewBox="0 0 603.45 591.68">
+        <svg height="200px" width="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" data-name="Capa 1" viewBox="0 0 603.45 591.68">
           <defs>
             <style>
               .cls-1 {
@@ -135,27 +133,29 @@
     <h2>Cotiza tu Mudanza en Minutos</h2>
     <p>Obtén una cotización precisa en pocos pasos y sin complicaciones.</p>
     <button (click)="startQuote()">Comenzar</button>
-    </div>
-  </div>
-
-  <!-- Sección derecha: Explicación de pasos -->
-  <div class="quote-derecha">
-    <div *ngIf="!isQuoteStarted" class="Tarjeta">
     <h3>¿Cómo funciona?</h3>
-    <ul>
+    <ul style="text-align: justify;">
       <li><strong>1. Tus datos: </strong>Ingresa tu nombre, correo y numero de teléfono.</li>
       <li><strong>2. Volumen de carga:</strong> Selecciona los muebles y objetos que deseas trasladar.</li>
       <li><strong>3. Origen y destino:</strong> Indica las direcciones de recolección y entrega.</li>
       <li><strong>4. Servicios Extra:</strong> Añade opciones como empaque VIP para mayor protección.</li>
       <li><strong>5. Tu cotización Lista:</strong> Recibe el costo estimado de tu mudanza al instante.</li>
     </ul>
-    <p>Haz tu mudanza más fácil, rápida y segura con Mudanzas MX.</p>
+    <p>Haz tu mudanza más fácil, rápida y segura con MudanzasMX.</p>
+    </div>
   </div>
-</div>
+
+  <!-- Sección derecha: Explicación de pasos -->
+  <!-- <div class="quote">
+    <div *ngIf="!isQuoteStarted" class="Tarjeta">
+    
+  </div> 
+</div>-->
+
 </div>
 
-<div *ngIf="isQuoteStarted">
-  <app-quote-form></app-quote-form>  
+<div *ngIf="isQuoteStarted" >
+  <app-quote-form></app-quote-form>
 </div>
 
 <app-footer></app-footer>

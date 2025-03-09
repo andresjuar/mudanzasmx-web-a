@@ -1,352 +1,428 @@
 <div class="quote-container" *ngIf="currentStep !==11">
   <!-- Sección izquierda: Tarjeta de inicio -->
 
-  <div class="quote-izquierda">
-    <div class="Tarjeta">
-      <form (submit)="$event.preventDefault()">
-            <!-- Paso 1: Nombre -->
-            <div *ngIf="currentStep === 1">
-              <label>Nombre(s)</label>
-              <input type="text" [(ngModel)]="quoteData.nombreCliente[0]" name="nombreCliente" required />
-    
-              <label>Apellidos</label>
-              <input type="text" [(ngModel)]="quoteData.nombreCliente[1]" name="apellidoCliente" required />
-            </div>
-            <!-- Paso 2: Email -->
-            <div *ngIf="currentStep === 2">
-              <label>Correo Electrónico</label>
-              <input type="email" [(ngModel)]="quoteData.contactoCliente[0]" name="emailCliente" required />
-    
-              <label>Número de Teléfono</label>
-              <input type="email" [(ngModel)]="quoteData.contactoCliente[1]" name="numeroCliente" required />
-            </div>
-    
-            <!-- Paso 3: Volumen -->
-    
-            <div *ngIf="currentStep === 3">
-              <h3>Ayúdanos a hacer una lista de lo que deseas mover en tu mudanza</h3>
-    
-              <!-- Contenedor de habitaciones en grid -->
-              <div class="habitaciones-grid">
-                <button *ngFor="let habitacion of habitaciones" (click)="toggleHabitacion(habitacion.nombre)"
-                  [class.activa]="habitacionAbierta === habitacion.nombre" class="habitacion-btn">
-                  {{ habitacion.nombre }}
-                </button>
-              </div>
-              <!-- Lista de muebles en la habitación seleccionada -->
-              
-    
-              <!-- Lista de objetos seleccionados -->
-              <h4>Lista:</h4>
-              <table *ngIf="quoteData.volumen.length > 0">
-                <thead>
-                  <tr>
-                    <th>Mueble</th>
-                    <th>Cantidad</th>
-                    <th>Volumen (m³)</th>
-                    <th>Acción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let mueble of quoteData.volumen; let i = index">
-                    <td>{{ mueble.nombre }}</td>
-                    <td>
-                      <button (click)="eliminarMueble(i)" style="width: 50px;">➖</button>
-                      {{ mueble.cantidad }}
-                      <button (click)="agregarMueble(mueble)" style="width: 50px;">➕</button>
-                    </td>
-                    <td>{{ mueble.volumen * mueble.cantidad }}</td>
-                    <td>
-                      <button (click)="eliminarMueble(i)">❌</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-    
-              <h5>Volumen estimado: {{ quoteData.VolumenTotal }} m³</h5>
-            </div>
-    
-    
-            <!-- Paso 4: Origen y Destino-->
-            <div *ngIf="currentStep === 4">
-              <div class="">
-                <label>Calle y número de Origen</label>
-                <input type="text" [(ngModel)]="quoteData.origen[0]" name="origen" required />
-                <label>Ciudad</label>
-                <input type="text" [(ngModel)]="quoteData.origen[1]" name="origen" required />
-                <label>Estado</label>
-                <input type="text" [(ngModel)]="quoteData.origen[2]" name="origen" required />
-                <label>Pais</label>
-                <input type="text" [(ngModel)]="quoteData.origen[3]" name="origen" required />
-                <label>Código Postal</label>
-                <input type="text" [(ngModel)]="quoteData.origen[4]" name="origen" required />
-              </div>
-        
-            </div>
-    
-            <!-- Paso 6: Tipo de origen -->
-            <div *ngIf="currentStep === 5" class="">
-              <label>Tipo de vivienda de origen</label>
-              <select [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required>
-                <option value="casa">Casa</option>
-                <option value="dpto">Departamento</option>
-                <option value="oficina">Oficina</option>
-                <option value="bodega">Bodega</option>
-              </select>
-            
-              <!-- Mostrar "Pisos" solo si se selecciona casa, dpto u oficina -->
-              <div *ngIf="quoteData.tipoOrigen[0] === 'casa' || quoteData.tipoOrigen[0] === 'dpto' || quoteData.tipoOrigen[0] === 'oficina'">
-                <label>Pisos</label>
-                <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
-              </div>
-            
-              <!-- Mostrar "¿Tiene elevador?" solo si es dpto u oficina -->
-              <div *ngIf="quoteData.tipoOrigen[0] === 'dpto' || quoteData.tipoOrigen[0] === 'oficina'">
-                <label>¿Tiene elevador?</label>
-                <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
-                  <option [value]="true">Sí</option>
-                  <option [value]="false">No</option>
-                </select>
-              </div>
-            </div>
-            
-            <!-- Paso 7: Tipo de destino -->
-            <div *ngIf="currentStep === 6" class="">
-              <label>Tipo de vivienda de destino</label>
-              <select [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required>
-                <option value="casa">Casa</option>
-                <option value="dpto">Departamento</option>
-                <option value="oficina">Oficina</option>
-                <option value="bodega">Bodega</option>
-              </select>
-            
-              <!-- Mostrar "Pisos" solo si se selecciona casa, dpto u oficina -->
-              <div *ngIf="quoteData.tipoDestino[0] === 'casa' || quoteData.tipoDestino[0] === 'dpto' || quoteData.tipoDestino[0] === 'oficina'">
-                <label>Pisos</label>
-                <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
-              </div>
-            
-              <!-- Mostrar "¿Tiene elevador?" solo si es dpto u oficina -->
-              <div *ngIf="quoteData.tipoDestino[0] === 'dpto' || quoteData.tipoDestino[0] === 'oficina'">
-                <label>¿Tiene elevador?</label>
-                <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
-                  <option [value]="true">Sí</option>
-                  <option [value]="false">No</option>
-                </select>
-              </div>
-            </div>
-            
-    
-            <!-- Paso 8: Metros de acarreo -->
-            <div *ngIf="currentStep === 7" class="">
-              <label>Metros de acarreo en origen</label>
-              <input type="number" [(ngModel)]="quoteData.metrosAcarreo[0]" name="acarreoOrigen" required />
-    
-              <label>Metros de acarreo en destino</label>
-              <input type="number" [(ngModel)]="quoteData.metrosAcarreo[1]" name="acarreoDestino" required />
-            </div>
-    
-            <!-- Paso 9: Empaque VIP -->
-            <div *ngIf="currentStep === 8" class="opciones-empaque">
-              <label>Selecciona el tipo de empaque para tu mudanza:</label>
-              
-              <div class="botones-empaque">
-                <button (click)="seleccionarEmpaque('sencillo')" class="btn-empaque">Empaque Sencillo</button>
-                <button (click)="seleccionarEmpaque('plus')" class="btn-empaque">Empaque Plus</button>
-                <button (click)="seleccionarEmpaque('vip')" class="btn-empaque">Empaque VIP</button>
-              </div>
-            </div>
 
-            <div *ngIf="currentStep === 9" class="opciones-seguro">
-              <label>Selecciona el tipo de seguro</label>
-              
-              <div class="botones-seguro">
-                <button (click)="seleccionarSeguro('basico')" class="btn-seguro">Seguro Básico</button>
-                <button (click)="seleccionarSeguro('amplia')" class="btn-seguro">Cobertura Amplia</button>
-              </div>
-            </div>
-                   
-            <div *ngIf="currentStep === 10">
-              <h3>Todo listo para tu cotización</h3>
-            </div>
-            
-            <!-- Botones de navegación -->
+  <div class="">
+    <form (submit)="$event.preventDefault()">
+
+
+      <div *ngIf="currentStep===0">
+        <h2>Selecciona el tipo de mudanza</h2>
+        <div class="botones-tipo-mudanza">
+          <button (click)="seleccionarEmpaque('MX')" class="btn-mudanza">Mexico</button>
+          <button (click)="seleccionarEmpaque('EUA-MX')" class="btn-mudanza">EUA-MX</button>
+          <button (click)="seleccionarEmpaque('Internacional')" class="btn-mudanza">Internacional</button>
+        </div>
+      </div>
+
+
+      <div *ngIf="currentStep === 1">
+        <h2>Necesitamos Conocerte</h2>
+        <div class="Tarjeta">
+          <label>Nombre(s)</label>
+          <input type="text" [(ngModel)]="quoteData.nombreCliente[0]" name="nombreCliente" required />
+
+          <label>Apellido(s)</label>
+          <input type="text" [(ngModel)]="quoteData.nombreCliente[1]" name="apellidoCliente" required />
+
+          <div class="buttons">
+            <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+            <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
+              Siguiente
+            </button>
+
+          </div>
+
+
+        </div>
+      </div>
+      <!-- Paso 2: Email -->
+      <div *ngIf="currentStep === 2" class="Tarjeta">
+        <label>Correo Electrónico</label>
+        <input type="email" [(ngModel)]="quoteData.contactoCliente[0]" name="emailCliente" required />
+
+        <label>Número de Teléfono</label>
+        <input type="tel" [(ngModel)]="quoteData.contactoCliente[1]" name="numeroCliente" pattern="[0-9]{10}"
+          maxlength="10" required />
+
+        <div class="buttons">
+          <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+          <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
+            Siguiente
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Paso 3: Volumen -->
+
+      <div *ngIf="currentStep === 3">
+        <div class="step" style="margin-top: 30px;">
+          <div class="step-title">
+            <h2>Ayúdanos a hacer una lista de lo que deseas mover en tu mudanza</h2>
+          </div>
+        </div>
+        <!-- Contenedor de habitaciones en grid -->
+        <div class="habitaciones-grid">
+          <button *ngFor="let habitacion of habitaciones" (click)="toggleHabitacion(habitacion.nombre)"
+            [class.activa]="habitacionAbierta === habitacion.nombre" class="habitacion-btn">
+            {{ habitacion.nombre }}
+          </button>
+        </div>
+
+        <!-- Lista de muebles en la habitación seleccionada -->
+
+
+        <!-- Lista de objetos seleccionados -->
+        <div class="volumen">
+          <div class="Tarjeta-volumen">
+            <h4>Lista:</h4>
+            <table *ngIf="quoteData.volumen.length > 0">
+              <thead>
+                <tr>
+                  <th>Mueble</th>
+                  <th>Cantidad</th>
+                  <th>Volumen (m³)</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mueble of quoteData.volumen; let i = index">
+                  <td>{{ mueble.nombre }}</td>
+                  <td>
+                    <button (click)="eliminarMueble(i)">➖</button>
+                    {{ mueble.cantidad }}
+                    <button (click)="agregarMueble(mueble)">➕</button>
+                  </td>
+                  <td>{{ mueble.volumen * mueble.cantidad }}</td>
+                  <td>
+                    <button (click)="eliminarMueble(i)">❌</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h5>Volumen estimado: {{ quoteData.VolumenTotal }} m³</h5>
             <div class="buttons">
-              <button type="button" (click)="prevStep()" *ngIf="currentStep > 1">Atrás</button>
-              <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 8">
+              <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+              <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
                 Siguiente
               </button>
-              <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 10">
-                Enviar cotización
+
+            </div>
+
+          </div>
+
+          <div *ngIf="!habitacionAbierta && currentStep===3" class="Tarjeta-volumen">
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/004/581/260/non_2x/truck-delivery-icon-transportation-automotive-shipping-moving-and-freight-illustration-design-free-vector.jpg"
+              style="height: 200px;" alt="">
+          </div>
+
+          <div *ngIf="habitacionAbierta && currentStep===3" class="Tarjeta-volumen">
+            <h4>{{ habitacionAbierta }}</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Mueble</th>
+                  <th>Volumen (m³)</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
+                  <td>{{ mueble.nombre }}</td>
+                  <td>{{ mueble.volumen }}</td>
+                  <td>
+                    <button (click)="agregarMueble(mueble)">➕</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Paso 4: Origen y Destino-->
+      <div *ngIf="currentStep === 4">
+        <h2>Ingrese la Dirección de Origen y de Destino</h2>
+        <div class="step Tarjeta">
+          <div class="Tarjeta" style="  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);">
+            <label>Calle y número de Origen</label>
+            <input type="text" [(ngModel)]="quoteData.origen[0]" name="origen" required />
+            <label>Ciudad</label>
+            <input type="text" [(ngModel)]="quoteData.origen[1]" name="origen" required />
+            <label>Estado</label>
+            <input type="text" [(ngModel)]="quoteData.origen[2]" name="origen" required />
+            <label>Pais</label>
+            <input type="text" [(ngModel)]="quoteData.origen[3]" name="origen" required />
+            <label>Código Postal</label>
+            <input type="text" [(ngModel)]="quoteData.origen[4]" name="origen" required />
+
+
+
+            <div class="buttons">
+              <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+
+            </div>
+
+          </div>
+          <div class="Tarjeta" style="  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);">
+            <label>Calle y número de Destino</label>
+            <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
+            <label>Ciudad</label>
+            <input type="text" [(ngModel)]="quoteData.destino[1]" name="origen" required />
+            <label>Estado</label>
+            <input type="text" [(ngModel)]="quoteData.destino[2]" name="origen" required />
+            <label>Pais</label>
+            <input type="text" [(ngModel)]="quoteData.destino[3]" name="origen" required />
+            <label>Código Postal</label>
+            <input type="text" [(ngModel)]="quoteData.destino[4]" name="origen" required />
+
+            <div class="buttons">
+
+              <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
+                Siguiente
               </button>
+
             </div>
             
-            
-            <!-- Mensaje de éxito -->
-            <p *ngIf="successMessage">{{ successMessage }}</p>
-          </form>
-    
-
-    </div>
-  </div>
-
-  <!-- Sección derecha: Explicación de pasos -->
-  <div class="quote-derecha">
-    <div class="Tarjeta">
-      <div *ngIf="currentStep === 8" class="opciones-empaque">
-        <h5>Empaque Sencillo</h5>
-        <p>Selecciona solo si NO requieres ningún tipo de empaque. 
-          ✔ NO recomendado 
-          ✔ Riesgo de daño en tus pertenencias</p>
-        <h5>Empaque plus</h5>
-        <p>Este empaque es lo básico en la protección, ofreciendo así una ligera 
-          capa de protección para tus muebles 
-          ✔ Colchonetas, plástico protector y cinta. 
-          ✔ Protección simple pero eficiente para tus pertenencias. </p>
-        <h5>Empaque Vip</h5>
-        <p>Este servicio es nuestra especialidad, protegiendo tus pertenencias 
-          para evitar cualquier tipo de daño durante el traslado 
-          ✔ Protecciones del empaque plus agregando esquineros de cartón, 
-          cajas ropero, polipack espuma, plástico burbuja, cuerdas y más. 
-          ✔ Ideal para evitar cualquier daño durante el largo trayecto. </p>
-      </div>
-
-      <div *ngIf="habitacionAbierta && currentStep===3" >
-        <h4>{{ habitacionAbierta }}</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Mueble</th>
-              <th>Volumen (m³)</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let mueble of getMueblesDeHabitacion(habitacionAbierta)">
-              <td>{{ mueble.nombre }}</td>
-              <td>{{ mueble.volumen }}</td>
-              <td>
-                <button (click)="agregarMueble(mueble)">➕</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="currentStep === 4">
-
-        <div class="">
-          <label>Calle y número de Destino</label>
-          <input type="text" [(ngModel)]="quoteData.destino[0]" name="origen" required />
-          <label>Ciudad</label>
-          <input type="text" [(ngModel)]="quoteData.destino[1]" name="origen" required />
-          <label>Estado</label>
-          <input type="text" [(ngModel)]="quoteData.destino[2]" name="origen" required />
-          <label>Pais</label>
-          <input type="text" [(ngModel)]="quoteData.destino[3]" name="origen" required />
-          <label>Código Postal</label>
-          <input type="text" [(ngModel)]="quoteData.destino[4]" name="origen" required />
+          </div>
         </div>
-        <button type="button" (click)="prevStep()" *ngIf="currentStep > 1" style="color: #ffd700;">.</button>
+      </div>
+
+      <!-- Paso 6: Tipo de origen -->
+      <div *ngIf="currentStep === 5" class="Tarjeta">
+        <label>Tipo de vivienda de origen</label>
+        <select [(ngModel)]="quoteData.tipoOrigen[0]" name="tipoOrigen" required>
+          <option value="casa">Casa</option>
+          <option value="dpto">Departamento</option>
+          <option value="oficina">Oficina</option>
+          <option value="bodega">Bodega</option>
+        </select>
+
+        <!-- Mostrar "Pisos" solo si se selecciona casa, dpto u oficina -->
+        <div
+          *ngIf="quoteData.tipoOrigen[0] === 'casa' || quoteData.tipoOrigen[0] === 'dpto' || quoteData.tipoOrigen[0] === 'oficina'">
+          <label>Pisos</label>
+          <input type="number" [(ngModel)]="quoteData.tipoOrigen[1]" name="pisosOrigen" required />
+        </div>
+
+        <!-- Mostrar "¿Tiene elevador?" solo si es dpto u oficina -->
+        <div *ngIf="quoteData.tipoOrigen[0] === 'dpto' || quoteData.tipoOrigen[0] === 'oficina'">
+          <label>¿Tiene elevador?</label>
+          <select [(ngModel)]="quoteData.tipoOrigen[2]" name="elevadorOrigen" required>
+            <option [value]="true">Sí</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
+        <div class="buttons">
+          <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+          <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
+            Siguiente
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Paso 7: Tipo de destino -->
+      <div *ngIf="currentStep === 6" class="Tarjeta">
+        <label>Tipo de vivienda de destino</label>
+        <select [(ngModel)]="quoteData.tipoDestino[0]" name="tipoDestino" required>
+          <option value="casa">Casa</option>
+          <option value="dpto">Departamento</option>
+          <option value="oficina">Oficina</option>
+          <option value="bodega">Bodega</option>
+        </select>
+
+        <!-- Mostrar "Pisos" solo si se selecciona casa, dpto u oficina -->
+        <div
+          *ngIf="quoteData.tipoDestino[0] === 'casa' || quoteData.tipoDestino[0] === 'dpto' || quoteData.tipoDestino[0] === 'oficina'">
+          <label>Pisos</label>
+          <input type="number" [(ngModel)]="quoteData.tipoDestino[1]" name="pisosDestino" required />
+        </div>
+
+        <!-- Mostrar "¿Tiene elevador?" solo si es dpto u oficina -->
+        <div *ngIf="quoteData.tipoDestino[0] === 'dpto' || quoteData.tipoDestino[0] === 'oficina'">
+          <label>¿Tiene elevador?</label>
+          <select [(ngModel)]="quoteData.tipoDestino[2]" name="elevadorDestino" required>
+            <option [value]="true">Sí</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
+        <div class="buttons">
+          <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+          <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
+            Siguiente
+          </button>
+
+        </div>
       </div>
 
 
+      <!-- Paso 8: Metros de acarreo -->
+      <div *ngIf="currentStep === 7" class="Tarjeta">
+        <label>Metros de acarreo en origen</label>
+        <input type="number" [(ngModel)]="quoteData.metrosAcarreo[0]" name="acarreoOrigen" required />
+
+        <label>Metros de acarreo en destino</label>
+        <input type="number" [(ngModel)]="quoteData.metrosAcarreo[1]" name="acarreoDestino" required />
+        <div class="buttons">
+            <button type="button" (click)="prevStep()" *ngIf="currentStep > 0">Atrás</button>
+
+            <button type="button" (click)="nextStep()" [disabled]="!isValidStep()" *ngIf="currentStep < 11 ">
+              Siguiente
+            </button>
+
+          </div>
+      </div>
+
+      <!-- Paso 9: Empaque VIP -->
+      <div *ngIf="currentStep === 8" class="opciones-empaque">
+        <h2>Selecciona el tipo de empaque para tu mudanza:</h2>
+
+        <div class="botones-tipo-mudanza">
+          <button (click)="seleccionarEmpaque('sencillo')" class="btn-mudanza">Empaque Sencillo</button>
+          <button (click)="seleccionarEmpaque('plus')" class="btn-mudanza">Empaque Plus</button>
+          <button (click)="seleccionarEmpaque('vip')" class="btn-mudanza">Empaque VIP</button>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep === 9" class="opciones-seguro">
+        <div class="step">
+        <h2>Selecciona el tipo de seguro</h2>
+      </div>
+        <div class="botones-tipo-mudanza">
+          <button (click)="seleccionarSeguro('basico')" class="btn-mudanza">Seguro Básico</button>
+          <button (click)="seleccionarSeguro('amplia')" class="btn-mudanza">Cobertura Amplia</button>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep === 10">
+        <h3>Todo listo para tu cotización</h3>
+      </div>
+
+      <!-- Botones de navegación -->
+
+
+
+      <!-- Mensaje de éxito -->
+      <p *ngIf="successMessage">{{ successMessage }}</p>
+    </form>
+
+    <div class="buttons">
+
+      <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 10">
+        Enviar cotización
+      </button>
+    </div>
 
   </div>
+
 </div>
-</div>
-  
+
 <div *ngIf="currentStep === 11">
   <app-header></app-header>
 
   <div class="plan-section">
     <div class="container text-center my-5" style="max-width: 1100px;">
-        <h2>Elige el Plan Perfecto para tu Mudanza</h2>
-        <h3>Tu cotización tiene asignada el folio: {{folioLetra}}{{folio}}</h3>
-        <p class="lead mb-5 text-secondary">Estas son las propuestas que te tenemos</p>
+      <h2>Elige el Plan Perfecto para tu Mudanza</h2>
+      <h3>Tu cotización tiene asignada el folio: {{folioLetra}}{{folio}}</h3>
+      <p class="lead mb-5 text-secondary">Estas son las propuestas que te tenemos</p>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="plan-card">
-                    <h3>Plan Exclusivo</h3>
-                    <p>Si necesitas tu mudanza lo antes posible, este es el plan para ti. Transporte inmediato y sin escalas para que recibas tus pertenencias con calidad de urgente.
-                    </p>
-                    <div class="price">Costo: {{directoPrecio}}</div>
-                    <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download" class="btn">DESCARGA ESTA COTIZACIÓN</a>
-                 
-          
-                    <a [attr.href]="mensajeWhatsAppCompartido" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
-                      Reserva este Plan   
-                    <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                     </a>
-          
+      <div class="row">
+        <div class="col-md-4">
+          <div class="plan-card">
+            <h3>Plan Exclusivo</h3>
+            <p>Si necesitas tu mudanza lo antes posible, este es el plan para ti. Transporte inmediato y sin escalas
+              para que recibas tus pertenencias con calidad de urgente.
+            </p>
+            <div class="price">Costo: {{directoPrecio}}</div>
+            <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download"
+              class="btn">DESCARGA ESTA COTIZACIÓN</a>
 
-                     <ul class="features list-unstyled">
-                      <li>✔ Recorrido de {{distancia}}</li>
-                      <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
-                      <li>✔ Transporte inmediato a tu destino sin escalas.</li>
 
-                  </ul>
-                   
-                </div>
-            </div>
+            <a [attr.href]="mensajeWhatsAppCompartido" class="btn whatsapp" target="_blank"
+              style="background-color: #25d366;">
+              Reserva este Plan
+              <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </a>
 
-            <div class="col-md-4 position-relative">
-                <div class="plan-card popular">
-                    <div class="highlight-label" style="color: white;">PLAN MÁS ELEGIDO</div>
-                    <h3>Plan Directo USA</h3>
-                    <p>Elige este plan si buscas un traslado directo de tus pertenencias desde EE.UU a México con los mejores estándares de seguridad y rapidez.</p>
-                    <div class="price" style="color: white;">Costo: {{directoUSAPrecio}}</div>
 
-                    <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download" class="btn" style="background-color: white;">DESCARGA ESTA COTIZACIÓN</a>
-                    
-                    
+            <ul class="features list-unstyled">
+              <li>✔ Recorrido de {{distancia}}</li>
+              <li>✔ Tiempo de entrega {{directoTiempo}} dias</li>
+              <li>✔ Transporte inmediato a tu destino sin escalas.</li>
 
-                    <a [attr.href]="mensajeWhatsAppUSA" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
-                      <span style="color: black;">Reserva este Plan</span>
-                      <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
- 
-                     </a>
-                    <ul class="features list-unstyled">
-                        <li>✔ Recorrido de {{distancia}}</li>
-                        <li>✔ Tiempo de entrega {{directoUSATiempo}} dias</li>
-                        <li>✔ Equilibrio entre precio y rapidez.</li>
-                    </ul>
-                </div>
-            </div>
+            </ul>
 
-            <div class="col-md-4">
-                <div class="plan-card">
-                    <h3>Plan Compartido</h3>
-                    <p>Ideal para quienes desean compartir costos. Tu carga se combinará con la de otros usuarios para un ahorro significativo.</p>
-                    <div class="price">Costo: {{compartidoPrecio}}</div>
-                    <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download" class="btn">DESCARGA ESTA COTIZACIÓN</a>
-
-                   
-
-                    <a [attr.href]="mensajeWhatsAppDirecto" class="btn whatsapp" target="_blank" style="background-color: #25d366; color: black">
-                     <span style="color: black;">Reserva este Plan</span> 
-                      <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-
-                     </a>
-
-                    <ul class="features list-unstyled">
-                      <li>✔ Recorrido de {{distancia}}</li>
-                      <li>✔ Tiempo de entrega {{compartidoTiempo}} dias</li>
-                      <li>✔ Ideal si no tienes prisa en recibir tus pertenencias.</li>
-                  </ul>
-
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="col-md-4 position-relative">
+          <div class="plan-card popular">
+            <div class="highlight-label" style="color: white;">PLAN MÁS ELEGIDO</div>
+            <h3>Plan Directo USA</h3>
+            <p>Elige este plan si buscas un traslado directo de tus pertenencias desde EE.UU a México con los mejores
+              estándares de seguridad y rapidez.</p>
+            <div class="price" style="color: white;">Costo: {{directoUSAPrecio}}</div>
+
+            <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download"
+              class="btn" style="background-color: white;">DESCARGA ESTA COTIZACIÓN</a>
+
+
+
+            <a [attr.href]="mensajeWhatsAppUSA" class="btn whatsapp" target="_blank" style="background-color: #25d366;">
+              <span style="color: black;">Reserva este Plan</span>
+              <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+
+            </a>
+            <ul class="features list-unstyled">
+              <li>✔ Recorrido de {{distancia}}</li>
+              <li>✔ Tiempo de entrega {{directoUSATiempo}} dias</li>
+              <li>✔ Equilibrio entre precio y rapidez.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="plan-card">
+            <h3>Plan Compartido</h3>
+            <p>Ideal para quienes desean compartir costos. Tu carga se combinará con la de otros usuarios para un ahorro
+              significativo.</p>
+            <div class="price">Costo: {{compartidoPrecio}}</div>
+            <a href="https://drive.usercontent.google.com/uc?id=1iMrU37P1W7VIjcVEqPRehGaiJeLFmF9y&export=download"
+              class="btn">DESCARGA ESTA COTIZACIÓN</a>
+
+
+
+            <a [attr.href]="mensajeWhatsAppDirecto" class="btn whatsapp" target="_blank"
+              style="background-color: #25d366; color: black">
+              <span style="color: black;">Reserva este Plan</span>
+              <img height="50px" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+
+            </a>
+
+            <ul class="features list-unstyled">
+              <li>✔ Recorrido de {{distancia}}</li>
+              <li>✔ Tiempo de entrega {{compartidoTiempo}} dias</li>
+              <li>✔ Ideal si no tienes prisa en recibir tus pertenencias.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-<button type="submit" (click)="submitQuote()" >
+  </div>
+  <!-- <button type="submit" (click)="submitQuote()" >
   Enviar cotización
-</button>
+</button> -->
 
 </div>
-  
-
-
-
- 

@@ -1,19 +1,48 @@
 .quote-container {
   min-height: 100vh;
-  background:  #fde69f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fef8e7;
+}
+.center{
+    text-align: center;
+}
+
+
+button {
+  margin: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #fbc210;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.Tarjeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/*
+
+.quote-izquierda, .quote-derecha {
+  width: 50%; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
- /* Espacio entre las dos secciones */
-}
-
-.quote-izquierda, .quote-derecha {
-  width: 50%; /* Cada sección ocupa la mitad del ancho */
-  height: 100%;
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
   text-align: center;
 }
 
@@ -27,38 +56,14 @@
   padding: 20px;
 }
 
-/* Tarjetas */
-.Tarjeta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  text-align: center;
-  max-width: 80%;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-height: 400px;
-}
+
 
 .quote-derecha .Tarjeta{
   background-color: #ffd700;
 }
 
-/* Botón */
-button {
-  margin-top: 15px;
-  padding: 10px 15px;
-  border: none;
-  background-color: #ffd700;
-  color: black;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 25px;
-}
 
-/* Lista */
+
 .quote-derecha ul {
   list-style-type: none;
   padding: 0;
@@ -69,10 +74,9 @@ button {
   margin-bottom: 8px;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .quote-container {
-      flex-direction: column; /* Cambia de fila a columna */
+      flex-direction: column; 
       align-items: center;
   }
 
@@ -92,10 +96,10 @@ button {
 
 }
 .footer-title .yellow {
-  color: #ffcc00; /* Amarillo */
+  color: #ffcc00;
 }
 .footer-title .black {
-  color: black; /* Negro */
+  color: black;
 }
 
 .fo {
@@ -119,4 +123,4 @@ button {
 .whatsapp-button img {
   width: 40px;
   height: 40px;
-}
+} */

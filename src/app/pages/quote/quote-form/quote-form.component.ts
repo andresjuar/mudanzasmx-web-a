@@ -11,7 +11,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
   styleUrl: './quote-form.component.css'
 })
 export class QuoteFormComponent {
-  currentStep = 1;
+  currentStep = 0;
   totalSteps = 11;
   private apiUrl = 'http://localhost:3000/quote';
   successMessage: string | null = null;
@@ -33,6 +33,7 @@ export class QuoteFormComponent {
   volumenTotal: number = 0;
 
   quoteData = {
+    tipoMudanza: null,
     nombreCliente: [null,null], //nombre apellido
     contactoCliente: [null,null], //email numero
     volumen: [] as { nombre: string; volumen: number; cantidad: number }[],
@@ -202,13 +203,15 @@ calcularVolumenTotal() {
   }
 
   prevStep() {
-    if (this.currentStep > 1) {
+    if (this.currentStep > 0) {
       this.currentStep--;
     }
   }
 
   isValidStep(): boolean {
     switch (this.currentStep) {
+      case 0:
+        return this.quoteData.tipoMudanza !== null;
       case 1:
         return !!this.quoteData.nombreCliente.every(value=>value !==null);
       case 2:
@@ -234,6 +237,10 @@ calcularVolumenTotal() {
   
 
   seleccionarEmpaque(tipo: string) {
+    this.quoteData.empaque = tipo; // Guarda la opción seleccionada
+    this.currentStep++; // Avanza al siguiente paso automáticamente
+  }
+  seleccionarTipoMudanza(tipo: string) {
     this.quoteData.empaque = tipo; // Guarda la opción seleccionada
     this.currentStep++; // Avanza al siguiente paso automáticamente
   }

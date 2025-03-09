@@ -1,19 +1,249 @@
+.Tarjeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 50vh;
+}
+.Tarjeta-volumen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .quote-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fef8e7;
+}
+
+h2 {
+  color: #fbc210;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-top: 0px;
+  text-align: center;
+
+}
+
+button {
+  margin: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #fbc210;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.botones-tipo-mudanza{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.btn-mudanza{
+    background: rgba(255, 255, 255, 0.608);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 200px;
+    width: 200px;
+    font-size: large;
+}
+
+.btn-mudanza:hover, .habitacion-btn:hover {
+  transform: translateY(-5px); /* Eleva la tarjeta al hacer hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al hacer hover */
+}
+
+.step{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  min-width:fit-content;
+  gap: 20px;
+}
+
+.Tarjeta input, .Tarjeta select {
+  width: 100%;  
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.Tarjeta label {
+  font-size: 1.3rem;
+  margin: 5px;
+}
+
+.Tarjeta button:hover {
+  background: #ddac18;
+}
+
+.Tarjeta button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+
+@media (max-width: 991px) {
+  /* Estilos específicos para pantallas menores a 991px */
+  .botones-tipo-mudanza{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .volumen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Tarjeta-volumen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+    max-width: 375px;
+  }
+
+}
+
+@media (max-width: 600px) {
+ /*  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  } */
+  .step{
+    flex-direction: column;
+  }
+  th, td {
+    font-size: 14px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    padding: 5px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 3px 8px;
+  }
+  .step-title{
+    width: 350px;
+  }
+  .Tarjeta-volumen{
+    width: 350px;
+  }
+}
+
+.habitaciones-grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:10px;
+}
+
+.habitacion-btn {
+  flex: 1 1 150px; /* Permite que los botones crezcan, pero con un mínimo de 150px */
+  height: 70px; /* Mantiene la misma altura */
+  max-width: 150px; /* Evita que los botones sean demasiado grandes */
+  background: rgba(255, 255, 255, 0.608);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-title{
+  max-width: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.volumen{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.volumen button {
+  margin: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #fbc210;
+  color: black;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.volumen button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+
+.buttons button {
+  margin: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #fbc210;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+/* .quote-container {
   min-height: 100vh;
   background:  #ece0b2;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
- /* Espacio entre las dos secciones */
+   Espacio entre las dos secciones  
 }
 
 .quote-izquierda, .quote-derecha {
-  width: 50%; /* Cada sección ocupa la mitad del ancho */
+  width: 50%;   Cada sección ocupa la mitad del ancho  
   height: 100%;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;   Centra horizontalmente  
+  align-items: center;   Centra verticalmente  
   text-align: center;
 }
 
@@ -27,23 +257,23 @@
   padding: 20px;
 }
 
-/* Tarjetas */
+  Tarjetas  
 .Tarjeta {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;   Centra horizontalmente  
+  align-items: center;   Centra verticalmente  
   text-align: center;
-  width: 90%; /* Reduce el ancho para evitar que se desborde */
-  max-width: 800px; /* Limita el tamaño para que no crezca demasiado */
+  width: 90%;   Reduce el ancho para evitar que se desborde  
+  max-width: 800px;   Limita el tamaño para que no crezca demasiado  
   padding: 20px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-height: 400px; /* Evita que sea muy pequeña */
-  height: auto; /* Que crezca según el contenido */
-  max-height: 80vh; /* Evita que se salga de la pantalla */
-  overflow-y: auto; /* Permite hacer scroll dentro de la tarjeta */
+  min-height: 400px;   Evita que sea muy pequeña  
+  height: auto;   Que crezca según el contenido  
+  max-height: 80vh;   Evita que se salga de la pantalla  
+  overflow-y: auto;   Permite hacer scroll dentro de la tarjeta  
 
   overflow: auto;
 }
@@ -53,7 +283,7 @@
   background-color: #ffd700;
 }
 
-/* Botón */
+  Botón  
 button {
   margin-top: 15px;
   padding: 10px 15px;
@@ -67,7 +297,7 @@ button {
 
 @media (max-width: 768px) {
   .quote-container {
-      flex-direction: column; /* Cambia de fila a columna */
+      flex-direction: column;   Cambia de fila a columna  
       align-items: center;
   }
 
@@ -84,19 +314,19 @@ button {
 
 
 
-/* 📌 Ajustes para los formularios */
+  📌 Ajustes para los formularios  
 .Tarjeta label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
   text-align: center;
-  width: 100%; /* Asegura que el label ocupe todo el ancho */
+  width: 100%;   Asegura que el label ocupe todo el ancho  
 }
 
-/* 📌 Inputs estilizados y centrados */
+  📌 Inputs estilizados y centrados  
 .Tarjeta input,
 .Tarjeta select {
-  width: 100%; /* Asegura que los inputs ocupen todo el ancho */
+  width: 100%;   Asegura que los inputs ocupen todo el ancho  
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -104,7 +334,7 @@ button {
   text-align: left;
 }
 
-/* 📌 Contenedor de los botones */
+  📌 Contenedor de los botones  
 .Tarjeta .buttons {
   display: flex;
   justify-content: center;
@@ -112,7 +342,7 @@ button {
   gap: 10px;
 }
 
-/* 📌 Estilos de los botones */
+  📌 Estilos de los botones  
 .Tarjeta button {
   background: #FFD700;
   color: black;
@@ -123,20 +353,18 @@ button {
   transition: background 0.3s;
   font-size: 16px;
   text-align: center;
-  width: 100%; /* Asegura que los botones ocupen todo el ancho */
+  width: 100%;   Asegura que los botones ocupen todo el ancho  
 }
 
-/* 📌 Efecto hover en botones */
-.Tarjeta button:hover {
-  background: #bea208;
-}
-
-/* 📌 Deshabilitar botón */
+  📌 Efecto hover en botones  
 
 
-/* 📌 Mensaje de éxito */
+  📌 Deshabilitar botón  
 
-/* 📌 Ajustes de tabla */
+
+  📌 Mensaje de éxito  
+
+  📌 Ajustes de tabla  
 table {
   width: 100%;
   border-collapse: collapse;
@@ -154,10 +382,10 @@ th {
   background-color: #f4f4f4;
 }
 
-/* 📌 Estilos de botones dentro de la tabla */
+  📌 Estilos de botones dentro de la tabla  
 
 
-/* 📌 Grid para habitaciones */
+  📌 Grid para habitaciones  
 .habitaciones-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -165,7 +393,7 @@ th {
   margin: 20px 0;
 }
 
-/* 📌 Estilo para botones de habitaciones */
+  📌 Estilo para botones de habitaciones  
 .habitacion-btn {
   background-color: #f4f4f4;
   border: 2px solid #ccc;
@@ -181,7 +409,7 @@ th {
   background-color: #ddd;
 }
 
-/* 📌 Ajuste responsivo */
+  📌 Ajuste responsivo  
 @media (max-width: 768px) {
   .quote-container {
       flex-direction: column;
@@ -263,11 +491,7 @@ table button {
   background-color: #ff9800;
 }
 
-.plan-section {
-  padding-top: 3rem;
-  min-height: calc(100vh - 1rem);
-  background: linear-gradient(to bottom, #ffffff, #ece0b2); 
-}
+
 .plan-card {
   background: white;
   border-radius: 40px;
@@ -351,15 +575,15 @@ h2 {
   justify-content: center;
   align-items: center;
   height: 100vh;
- /* Espacio entre las dos secciones */
+   Espacio entre las dos secciones  
 }
 
 .quote-izquierda, .quote-derecha {
-  width: 50%; /* Cada sección ocupa la mitad del ancho */
+  width: 50%;   Cada sección ocupa la mitad del ancho  
   height: 100%;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;   Centra horizontalmente  
+  align-items: center;   Centra verticalmente  
   text-align: center;
 }
 
@@ -373,23 +597,23 @@ h2 {
   padding: 20px;
 }
 
-/* Tarjetas */
+  Tarjetas  
 .Tarjeta {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;   Centra horizontalmente  
+  align-items: center;   Centra verticalmente  
   text-align: center;
-  width: 90%; /* Reduce el ancho para evitar que se desborde */
-  max-width: 800px; /* Limita el tamaño para que no crezca demasiado */
+  width: 90%;   Reduce el ancho para evitar que se desborde  
+  max-width: 800px;   Limita el tamaño para que no crezca demasiado  
   padding: 20px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-height: 400px; /* Evita que sea muy pequeña */
-  height: auto; /* Que crezca según el contenido */
-  max-height: 80vh; /* Evita que se salga de la pantalla */
-  overflow-y: auto; /* Permite hacer scroll dentro de la tarjeta */
+  min-height: 400px;   Evita que sea muy pequeña  
+  height: auto;   Que crezca según el contenido  
+  max-height: 80vh;   Evita que se salga de la pantalla  
+  overflow-y: auto;   Permite hacer scroll dentro de la tarjeta  
 
   overflow: auto;
 }
@@ -398,7 +622,7 @@ h2 {
   background-color: #fbc210;
 }
 
-/* Botón */
+  Botón  
 button {
   margin-top: 15px;
   padding: 10px 15px;
@@ -409,10 +633,11 @@ button {
   cursor: pointer;
   border-radius: 25px;
 }
-
+  */
+/* 
 @media (max-width: 768px) {
   .quote-container {
-      flex-direction: column; /* Cambia de fila a columna */
+      flex-direction: column;   Cambia de fila a columna  
       align-items: center;
   }
 
@@ -427,7 +652,7 @@ button {
   }
 }
 
-/* 📌 Estilos de los botones */
+  📌 Estilos de los botones  
 .Tarjeta button {
   background: #fbc210;
 }
@@ -457,4 +682,81 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
+}  */
+.plan-section {
+  padding-top: 3rem;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ffffff, #ece0b2); 
+}
+
+
+.plan-card {
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 470px;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card h3 {
+  padding-top: 2rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.plan-card ul {
+  text-align: left;
+  padding-top: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.plan-card .price {
+  font-size: 2rem;
+  color: #fbc210;
+  font-weight: bold;
+}
+
+.plan-card .btn {
+  background-color: #fbc210;
+  color: black;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.plan-card.popular {
+  background: #fbc210;
+  color: white;
+  position: relative;
+}
+
+.popular .btn {
+  background-color: white;
+  color: #fbc210;
+}
+
+.highlight-label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: #fbc210;
+  padding: 5px 15px;
+  font-weight: bold;
+  border-radius: 5px;
+
+}
+
+.plan-section h2 {
+  font-weight: bold;
+  font-size: 3rem;
 }
