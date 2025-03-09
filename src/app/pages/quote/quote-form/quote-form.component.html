@@ -1,8 +1,8 @@
 <div class="quote-container" *ngIf="currentStep !==11">
-  <!-- Sección izquierda: Tarjeta de inicio -->
+  
 
 
-  <div class="">
+
     <form (submit)="$event.preventDefault()">
 
 
@@ -305,8 +305,13 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 10">
+      <div *ngIf="currentStep === 10" class="Tarjeta">
         <h3>Todo listo para tu cotización</h3>
+        <div class="buttons">
+          <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 10">
+            Enviar cotización
+          </button>
+        </div>
       </div>
 
       <!-- Botones de navegación -->
@@ -317,16 +322,10 @@
       <p *ngIf="successMessage">{{ successMessage }}</p>
     </form>
 
-    <div class="buttons">
-
-      <button type="submit" (click)="submitQuote()" *ngIf="currentStep === 10">
-        Enviar cotización
-      </button>
-    </div>
 
   </div>
 
-</div>
+
 
 <div *ngIf="currentStep === 11">
   <app-header></app-header>
@@ -415,14 +414,9 @@
               <li>✔ Tiempo de entrega {{compartidoTiempo}} dias</li>
               <li>✔ Ideal si no tienes prisa en recibir tus pertenencias.</li>
             </ul>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <button type="submit" (click)="submitQuote()" >
-  Enviar cotización
-</button> -->
-
 </div>
